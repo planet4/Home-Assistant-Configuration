@@ -4,6 +4,7 @@
 !*.yaml
 !*.gif
 !*.md
+!.gitignore
 
 google_calendars.yaml
 known_devices.yaml
