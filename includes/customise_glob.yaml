@@ -11,8 +11,6 @@
 "sensor.*_temperature":
   friendly_name: Temperature
   icon: 'mdi:thermometer'
-"sensor.*_battery":
-  icon: 'mdi:battery'
 "sensor.next_calendar_*":
   icon: 'mdi:calendar'
 "sensor.*_cpu_load":
@@ -71,10 +69,3 @@
   icon: 'mdi:car'
 "sensor.graeme*to_*":
   icon: 'mdi:car'
-"switch.*floodlight*":
-  icon: 'mdi:lightbulb'
-"switch.summerhouselights*":
-  icon: 'mdi:lightbulb'
-"switch.utilityroomlights*":
-  icon: 'mdi:lightbulb'
-

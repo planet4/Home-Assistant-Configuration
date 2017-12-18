@@ -6,5 +6,5 @@
 
 # Log Severities: notset, debug, info, warn, warning, error, fatal, critical
   default: error
-  logs:
+  #logs:
     #homeassistant.components.automation: debug

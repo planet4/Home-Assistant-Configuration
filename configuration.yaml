@@ -57,7 +57,8 @@ recorder:
       - climate
 
 frontend:
-#  javascript_version: latest
+  javascript_version: es5
+  #  javascript_version: latest
 
 discovery:
 
@@ -133,13 +134,6 @@ panel_iframe:
     title: 'Grafana'
     url: !secret grafana_url
     icon: mdi:chart-areaspline
-
-panel_custom:
-  - name: floorplan
-    sidebar_title: Floorplan
-    sidebar_icon: mdi:home
-    url_path: floorplan
-    config: !include floorplan.yaml
 
 twilio:
   account_sid: !secret twilio_account_sid

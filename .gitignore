@@ -1,35 +1,10 @@
 # Wildcards
 
-*.pid
-*.xml
-*.csr
-*.crt
-*.key
-*.conf
-*.db-wal
-*.db-shm
-*.log
-*.db-journal
-*.db
-*.cfg
-*.wav
-*.mp3
-*.txt
-*.sqlite
-home-assistant.log.*
+*
+!*.yaml
+!*.gif
+!*.md
 
-# Hidden Files
-
-.uuid
-.gitignore
-.gitattributes
-.HA_VERSION
-.google.token
-.ios.conf
-
-# Normal Files
-
-broadband.json
 google_calendars.yaml
 known_devices.yaml
 secrets.yaml
@@ -42,7 +17,3 @@ icloud
 deps
 tts
 www
-
-# Python Caches
-__pycache__
-*.pyc
