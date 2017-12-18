@@ -1,0 +1,281 @@
+homeassistant:
+  customize:
+    binary_sensor.doorbell_door:
+      friendly_name: "Door"
+    binary_sensor.doorbell_gate:
+      friendly_name: "Gate"
+
+############################################################
+#
+# Add mqtt sensors as binary sensors
+#
+############################################################
+
+binary_sensor:
+  - platform: mqtt
+    state_topic: "house/doorbellreceiver/1/stat"
+    name: "PIR Front"
+    qos: 1
+    payload_on: "3on"
+    payload_off: "3off"
+    device_class: motion
+    retain: false
+
+  - platform: mqtt
+    state_topic: "house/doorbellreceiver/1/stat"
+    name: "PIR Courtyard"
+    qos: 1
+    payload_on: "1on"
+    payload_off: "1off"
+    device_class: motion
+    retain: false
+
+  - platform: mqtt
+    state_topic: "house/doorbellreceiver/1/stat"
+    name: "PIR Summer House"
+    qos: 1
+    payload_on: "5on"
+    payload_off: "5off"
+    device_class: motion
+    retain: false
+
+  - platform: mqtt
+    state_topic: "house/doorbellreceiver/1/stat"
+    name: "PIR Driveway"
+    qos: 1
+    payload_on: "6on"
+    payload_off: "6off"
+    device_class: motion
+    retain: false
+
+  - platform: mqtt
+    state_topic: "house/doorbellreceiver/1/stat"
+    name: "Doorbell Door"
+    qos: 1
+    payload_on: "4on"
+    payload_off: "4off"
+    retain: false
+
+  - platform: mqtt
+    state_topic: "house/doorbellreceiver/1/stat"
+    name: "Doorbell Gate"
+    qos: 1
+    payload_on: "2on"
+    payload_off: "2off"
+    retain: false
+
+############################################################
+#
+# Home Assistant Alerts
+#
+############################################################
+
+automation:
+
+############################################################
+#
+# Courtyard
+#
+############################################################
+
+
+  - alias: Voice Alert when Courtyard PIR channel is ACTIVATED
+    trigger:
+      platform: state
+      entity_id: binary_sensor.pir_courtyard
+      from: 'off'
+    condition:
+      condition: state
+      entity_id: input_boolean.voice_alerts
+      state: 'on'
+    action:
+      - service: tts.amazon_polly_say
+        data:
+          entity_id: media_player.living_room_audio
+          message: 'There is motion in the Courtyard'
+
+  - alias: TV Alert when Courtyard PIR channel is ACTIVATED
+    trigger:
+      platform: state
+      entity_id: binary_sensor.pir_courtyard
+      from: 'off'
+    action:
+      - service: notify.livingroomtv
+        data_template:
+          title: 'Alert'
+          message: 'There is motion in the Courtyard'
+
+############################################################
+#
+# Driveway
+#
+############################################################
+
+  - alias: TV Alert when Driveway PIR channel is ACTIVATED
+    trigger:
+      platform: state
+      entity_id: binary_sensor.pir_driveway
+      from: 'off'
+    action:
+      - service: notify.livingroomtv
+        data_template:
+          title: 'Alert'
+          message: 'There is motion in the Driveway'
+
+############################################################
+#
+# Front of House
+#
+############################################################
+
+  - alias: Alert when Front PIR channel is ACTIVATED
+    trigger:
+      platform: state
+      entity_id: binary_sensor.pir_front
+      from: 'off'
+    condition:
+      condition: state
+      entity_id: input_boolean.voice_alerts
+      state: 'on'
+    action:
+      - service: tts.amazon_polly_say
+        data:
+          entity_id: media_player.living_room_audio
+          message: 'There is motion at the front of the house'
+
+  - alias: TV Alert when Front PIR channel is ACTIVATED
+    trigger:
+      platform: state
+      entity_id: binary_sensor.pir_front
+      from: 'off'
+    action:
+      - service: notify.livingroomtv
+        data_template:
+          title: 'Alert'
+          message: 'There is motion at the front of the house'
+
+############################################################
+#
+# Summer House
+#
+############################################################
+
+  - alias: Alert when Summer House PIR channel is ACTIVATED
+    trigger:
+      platform: state
+      entity_id: binary_sensor.pir_summer_house
+      from: 'off'
+    condition:
+      condition: state
+      entity_id: input_boolean.voice_alerts
+      state: 'on'
+    action:
+      - service: tts.amazon_polly_say
+        data:
+          entity_id: media_player.living_room_audio
+          message: 'There is motion at the front of the summer house'
+
+  - alias: TV Alert when Summer House PIR channel is ACTIVATED
+    trigger:
+      platform: state
+      entity_id: binary_sensor.pir_summer_house
+      from: 'off'
+    action:
+      - service: notify.livingroomtv
+        data_template:
+          title: 'Alert'
+          message: 'There is motion at the front of the summer house'
+
+############################################################
+#
+# Door Doorbell
+#
+############################################################
+
+  - alias: Alert when Door Doorbell channel is ACTIVATED
+    trigger:
+      platform: state
+      entity_id: binary_sensor.doorbell_door
+      from: 'off'
+    condition:
+      condition: state
+      entity_id: input_boolean.voice_alerts
+      state: 'on'
+    action:
+      - service: tts.amazon_polly_say
+        data:
+          entity_id: media_player.living_room_audio
+          message: 'There is somebody at the door'
+
+  - alias: TV Alert when Door Doorbell channel is ACTIVATED
+    trigger:
+      platform: state
+      entity_id: binary_sensor.doorbell_door
+      from: 'off'
+    action:
+      - service: timer.start
+        entity_id: timer.go_timer
+      - service: light.turn_on
+        entity_id: light.living_room_go_1
+        data:
+          color_name: blue
+          brightness: 255
+      - service: notify.livingroomtv
+        data_template:
+          title: 'Alert'
+          message: 'There is somebody at the door'
+
+############################################################
+#
+# Gate Doorbell
+#
+############################################################
+
+  - alias: Alert when Gate Doorbell channel is ACTIVATED
+    trigger:
+      platform: state
+      entity_id: binary_sensor.doorbell_gate
+      from: 'off'
+    condition:
+      condition: state
+      entity_id: input_boolean.voice_alerts
+      state: 'on'
+    action:
+      - service: tts.amazon_polly_say
+        data:
+          entity_id: media_player.living_room_audio
+          message: 'There is somebody at the gate'
+
+  - alias: TV Alert when Gate Doorbell channel is ACTIVATED
+    trigger:
+      platform: state
+      entity_id: binary_sensor.doorbell_gate
+      from: 'off'
+    action:
+      - service: light.turn_on
+        entity_id: light.living_room_go_1
+        data:
+          color_name: red
+          brightness: 255
+      - service: timer.start
+        entity_id: timer.go_timer
+      - service: notify.livingroomtv
+        data_template:
+          title: 'Alert'
+          message: 'There is somebody at the gate'
+
+  - alias: Turn off Go Light after 30 seconds
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.go_timer
+    action:
+      - service: light.turn_off
+        entity_id: light.living_room_go_1
+
+timer:
+  go_timer:
+    duration: '00:00:30'
+
+

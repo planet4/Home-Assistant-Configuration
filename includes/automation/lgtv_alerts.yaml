@@ -1,0 +1,36 @@
+############################################################
+#
+# Home Assistant Graeme Home Notification
+#
+############################################################
+
+- alias: Notify when Graeme arrives HOME on TV
+  trigger:
+    - platform: zone
+      entity_id: device_tracker.graemes_iphone
+      zone: zone.home
+      event: enter
+  action:
+    service: notify.livingroomtv
+    data:
+      title: 'Alert'
+      message: 'Graeme has arrived home'
+
+
+############################################################
+#
+# Home Assistant Aileen Home Notification
+#
+############################################################
+
+- alias: Notify when Aileen arrives HOME on TV
+  trigger:
+    - platform: zone
+      entity_id: device_tracker.aileens_iphone
+      zone: zone.home
+      event: enter
+  action:
+    service: notify.livingroomtv
+    data:
+      title: 'Alert'
+      message: 'Aileen has arrived home'

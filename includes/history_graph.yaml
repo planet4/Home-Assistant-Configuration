@@ -1,0 +1,24 @@
+outside_temperature:
+  name: Outside Temperatures
+  entities: 
+    - sensor.netatmo_outside_temperature
+    - sensor.soil_temperature_lower
+    - sensor.soil_temperature_upper
+  hours_to_show: 72
+  refresh: 600
+
+pressure:
+  name: Air Pressure
+  entities:
+    - sensor.netatmo_inside_pressure
+  hours_to_show: 120
+  refresh: 600
+
+electricity_usage:
+  name: Power Usage
+  entities:
+    - sensor.total_power_usage
+    - sensor.no_5_power_usage
+    - sensor.no_6_power_usage
+  hours_to_show: 3
+  refresh: 300

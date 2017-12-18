@@ -1,0 +1,10 @@
+############################################################
+#
+# Home Assistant Input Date/Time
+#
+############################################################
+
+bedroom_alarm:
+  name: Bedroom Alarm Time
+  has_date: false
+  has_time: true

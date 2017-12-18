@@ -1,0 +1,319 @@
+homeassistant:
+  customize:
+    switch.light_backdoor_2:
+      friendly_name: "Driveway"
+      icon: mdi:lightbulb
+    switch.light_backdoor_1:
+      friendly_name: "Porch"
+      icon: mdi:lightbulb
+    switch.light_utility_room_1:
+      friendly_name: "Utility Room"
+      icon: mdi:lightbulb
+    switch.light_workshop_1:
+      friendly_name: "Workshop"
+      icon: mdi:lightbulb
+    switch.light_summerhouse_1:
+      friendly_name: "Summer House"
+      icon: mdi:lightbulb
+    input_boolean.evening_visitor_mode:
+      friendly_name: "Evening Visitor Mode"
+      icon: mdi:weather-night
+
+group:
+  All Courtyard Lights:
+    entities:
+      - switch.light_backdoor_2
+      - switch.light_backdoor_1
+      - switch.light_utility_room_1
+      - switch.light_workshop_1
+      - switch.light_summerhouse_1
+
+  Courtyard Lights:
+    entities:
+      - switch.light_backdoor_1
+      - switch.light_utility_room_1
+      - switch.light_workshop_1
+      - switch.light_summerhouse_1
+
+  courtyard_inputs:
+    entities:
+      - input_boolean.courtyard_lights_manual_mode
+
+  courtyard_pirs:
+    entities:
+      - binary_sensor.pir_driveway
+      - binary_sensor.pir_courtyard
+      - binary_sensor.pir_summer_house
+
+  doorswitches:
+    entities:
+      - binary_sensor.backdoorswitch_sensor
+      - binary_sensor.summerhousedoor_sensor
+      - binary_sensor.utilityroomswitch_sensor
+      - binary_sensor.workshopswitch_sensor
+
+timer:
+  courtyard_lights:
+    duration: '00:05:00'
+
+switch:
+  - platform: mqtt
+    name: "light_backdoor_1"
+    state_topic: "lights/backdoor/1/stat"
+    command_topic: "lights/backdoor/1"
+    qos: 1
+    payload_on: "1on"
+    payload_off: "1off"
+    retain: false
+
+  - platform: mqtt
+    name: "light_backdoor_2"
+    state_topic: "lights/backdoor/1/stat"
+    command_topic: "lights/backdoor/1"
+    qos: 1
+    payload_on: "2on"
+    payload_off: "2off"
+    retain: false
+
+  - platform: mqtt
+    name: "light_utility_room_1"
+    state_topic: "lights/utilityroom/1/stat"
+    command_topic: "lights/utilityroom/1"
+    qos: 1
+    payload_on: "1on"
+    payload_off: "1off"
+    retain: false
+
+  - platform: mqtt
+    name: "light_workshop_1"
+    state_topic: "lights/workshop/1/stat"
+    command_topic: "lights/workshop/1"
+    qos: 1
+    payload_on: "1on"
+    payload_off: "1off"
+    retain: false
+
+  - platform: mqtt
+    name: "light_summerhouse_1"
+    state_topic: "lights/summerhouse/1/stat"
+    command_topic: "lights/summerhouse/1"
+    qos: 1
+    payload_on: "1on"
+    payload_off: "1off"
+    retain: false
+
+input_boolean:
+  pir_test:
+    initial: off
+
+  courtyard_lights_manual_mode:
+    initial: off
+
+  evening_visitor_mode:
+    initial: off
+
+automation:
+  - alias: "Manual Mode Toggle"
+    trigger:
+      - platform: mqtt
+        topic: "lights/backdoor/1/stat"
+        payload: '1long'
+      - platform: mqtt
+        topic: "lights/utilityroom/1/stat"
+        payload: '1long'
+      - platform: mqtt
+        topic: "lights/workshop/1/stat"
+        payload: '1long'
+      - platform: mqtt
+        topic: "lights/summerhouse/1/stat"
+        payload: '1long'
+    action:
+      - service: input_boolean.toggle
+        data:
+          entity_id: input_boolean.courtyard_lights_manual_mode
+
+#########################################################
+#
+# Timer Mode
+#
+#########################################################
+
+  - alias: "Start Lights Timer"
+    trigger:
+      - platform: state
+        entity_id: group.courtyard_lights
+        to: 'on'
+      - platform: state
+        entity_id: group.courtyard_pirs
+        to: 'on'
+      - platform: state
+        entity_id: group.doorswitches
+        to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.courtyard_lights_manual_mode
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.evening_visitor_mode
+          state: 'off'
+        - condition: state
+          entity_id: sensor.light_sensor
+          state: 'Night'
+    action:
+      - service: timer.start
+        entity_id: timer.courtyard_lights
+      - service: switch.turn_on
+        entity_id: group.courtyard_lights
+
+  - alias: "Start Lights Timer on Device Tracker"
+    trigger:
+      - platform: zone
+        entity_id: device_tracker.graemes_iphone
+        zone: zone.home
+        event: enter
+      - platform: zone
+        entity_id: device_tracker.aileens_iphone
+        zone: zone.home
+        event: enter
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.courtyard_lights_manual_mode
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.evening_visitor_mode
+          state: 'off'
+        - condition: state
+          entity_id: sensor.light_sensor
+          state: 'Night'
+    action:
+      - service: timer.start
+        entity_id: timer.courtyard_lights
+      - service: switch.turn_on
+        entity_id: group.all_courtyard_lights
+
+  - alias: "Turn off lights at end of timer"
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.courtyard_lights
+    condition:
+      - condition: state
+        entity_id: input_boolean.courtyard_lights_manual_mode
+        state: 'off'
+    action:
+      - service: switch.turn_off
+        entity_id: group.all_courtyard_lights
+
+#########################################################
+#
+# Manual Mode
+#
+#########################################################
+
+  - alias: "Turn on lights in manual mode"
+    trigger:
+      - platform: state
+        entity_id: input_boolean.courtyard_lights_manual_mode
+        from: 'off'
+        to: 'on'
+    action:
+      - service: script.turn_on
+        entity_id: script.flash_courtyard_lights
+
+  - alias: "Turn off lights in manual mode"
+    trigger:
+      - platform: state
+        entity_id: input_boolean.courtyard_lights_manual_mode
+        from: 'on'
+        to: 'off'
+    action:
+       - service: switch.turn_off
+         entity_id: group.courtyard_lights
+
+#########################################################
+#
+# Evening Visitor Mode
+#
+#########################################################
+
+  - alias: "Evening Visitor Mode to On"
+    trigger:
+      - platform: state
+        entity_id: input_boolean.evening_visitor_mode
+        to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: sensor.light_sensor
+          state: 'Night'
+    action:
+      - service: switch.turn_on
+        entity_id: group.all_courtyard_lights
+
+  - alias: "Evening Visitor Mode to On - Daytime"
+    trigger:
+      - platform: state
+        entity_id: sensor.light_sensor
+        to: 'Night'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.evening_visitor_mode
+          state: 'on'
+    action:
+      - service: switch.turn_on
+        entity_id: group.all_courtyard_lights
+
+  - alias: "Evening Visitor to Off"
+    trigger:
+      - platform: state
+        entity_id: input_boolean.evening_visitor_mode
+        to: 'off'
+    action:
+      - service: switch.turn_off
+        entity_id: group.all_courtyard_lights
+
+#########################################################
+#
+# Turn off lights at 11pm
+#
+#########################################################
+
+  - alias: "Turn off Courtyard Lights at 11pm"
+    trigger:
+      - platform: time
+        at: '23:00:00'
+    condition:
+      - condition: state
+        entity_id: input_boolean.courtyard_lights_manual_mode
+        state: 'on'
+    action:
+      - service: switch.turn_off
+        entity_id: group.all_courtyard_lights
+
+#########################################################
+#
+# Flashing Mode
+#
+#########################################################
+
+script:
+  flash_courtyard_lights:
+    sequence:
+      - service: switch.turn_on
+        entity_id: group.courtyard_lights
+      - delay:
+          seconds: 1
+      - service: switch.turn_off
+        entity_id: group.courtyard_lights
+      - delay:
+          seconds: 1
+      - service: switch.turn_on
+        entity_id: group.courtyard_lights

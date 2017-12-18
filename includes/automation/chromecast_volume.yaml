@@ -1,0 +1,18 @@
+############################################################
+#
+# Set Chromecast Volume on Startup
+#
+############################################################
+
+- alias: Set Chromecast Volume on Startup
+  trigger:
+      platform: homeassistant
+      event: start
+  action:
+    - service: media_player.turn_on
+      data:
+        entity_id: media_player.bedroom
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.bedroom
+        volume_level: 0.4

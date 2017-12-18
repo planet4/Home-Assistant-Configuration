@@ -1,0 +1,15 @@
+############################################################
+#
+# Set Summer House temperature to 4 deg. at 10pm
+#
+############################################################
+
+- alias: Set Summer House Temperature to 4 deg. at 10pm
+  trigger:
+    platform: time
+    at: '22:00:00'
+  action:
+    - service: climate.set_temperature
+      data: 
+        entity_id: climate.summer_house 
+        temperature: 4

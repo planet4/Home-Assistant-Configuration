@@ -1,0 +1,49 @@
+############################################################
+#
+# Home Assistant TTS Alerts
+#
+############################################################
+
+############################################################
+#
+# Home Assistant VOICE ALERT when Aileen arrives HOME
+#
+############################################################
+
+- alias: Alert when Aileen arrives home
+  trigger:
+    - platform: zone
+      entity_id: device_tracker.aileens_iphone
+      zone: zone.home
+      event: enter
+  condition:
+    condition: state
+    entity_id: input_boolean.voice_alerts
+    state: 'on'
+  action:
+    - service: tts.amazon_polly_say
+      data:
+        entity_id: media_player.living_room_audio
+        message: 'Aileen has arrived home'
+
+############################################################
+#
+# Home Assistant VOICE ALERT when Graeme arrives HOME
+#
+############################################################
+
+- alias: Alert when Graeme arrives home
+  trigger:
+    - platform: zone
+      entity_id: device_tracker.graemes_iphone
+      zone: zone.home
+      event: enter
+  condition:
+    condition: state
+    entity_id: input_boolean.voice_alerts
+    state: 'on'
+  action:
+    - service: tts.amazon_polly_say
+      data:
+        entity_id: media_player.living_room_audio
+        message: 'Graeme has arrived home'

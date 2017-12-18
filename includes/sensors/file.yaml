@@ -1,0 +1,15 @@
+  - platform: file
+    name: Broadband Usage Download 
+    file_path: /home/homeassistant/.homeassistant/broadband.json 
+    value_template: '{{ value_json.download / 1000000000 }}'
+    unit_of_measurement: 'GB'
+  - platform: file
+    name: Broadband Usage Upload 
+    file_path: /home/homeassistant/.homeassistant/broadband.json 
+    value_template: '{{ value_json.upload / 1000000000}}'
+    unit_of_measurement: 'GB'
+  - platform: file
+    name: Broadband Usage Total 
+    file_path: /home/homeassistant/.homeassistant/broadband.json 
+    value_template: '{{ value_json.total / 1000000000 }}'
+    unit_of_measurement: 'GB'

@@ -1,0 +1,127 @@
+homeassistant:
+  customize:
+    switch.workshop_lights:
+      friendly_name: 'Lights'
+      icon: mdi:ceiling-light
+
+timer:
+  workshop_lights:
+    duration: '00:10:00'
+
+input_boolean:
+  workshop_lights_manual_mode:
+    initial: 'off'
+
+switch:
+  - platform: mqtt
+    name: "workshop_lights"
+    state_topic: "lights/workshop/1/stat"
+    command_topic: "lights/workshop/1"
+    qos: 1
+    payload_on: "2on"
+    payload_off: "2off"
+    retain: false
+
+automation:
+  - alias: "Start Utility Room Lights Timer"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.workshopswitch_sensor
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: sensor.light_sensor
+        state: 'Night'
+    action:
+      - service: timer.start
+        entity_id: timer.workshop_lights
+      - service: switch.turn_on
+        entity_id: switch.workshop_lights
+
+  - alias: "Turn off Utility Room Lights at end of timer"
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.workshop_lights
+    condition:
+      - condition: state
+        entity_id: input_boolean.workshop_lights_manual_mode
+        state: 'off'
+    action:
+      - service: switch.turn_off
+        entity_id: switch.workshop_lights
+
+#########################################################
+#
+# Manual Mode
+#
+#########################################################
+
+  - alias: "Manual Mode Toggle"
+    trigger:
+      - platform: mqtt
+        topic: "lights/workshop/1/stat"
+        payload: '2long'
+    action:
+      - service: input_boolean.toggle
+        data:
+          entity_id: input_boolean.workshop_lights_manual_mode
+
+  - alias: "Turn on Utility Room Lights in manual mode"
+    trigger:
+      - platform: state
+        entity_id: input_boolean.workshop_lights_manual_mode
+        from: 'off'
+        to: 'on'
+    action:
+      - service: script.turn_on
+        entity_id: script.flash_workshop_lights
+
+  - alias: "Turn off Utility Room Lights in manual mode"
+    trigger:
+      - platform: state
+        entity_id: input_boolean.workshop_lights_manual_mode
+        from: 'on'
+        to: 'off'
+    action:
+       - service: switch.turn_off
+         entity_id: switch.workshop_lights
+
+#########################################################
+#
+# Turn off lights at 11pm
+#
+#########################################################
+
+  - alias: "Turn off Utility Room Lights at 11pm"
+    trigger:
+      - platform: time
+        at: '23:00:00'
+    condition:
+      - condition: state
+        entity_id: input_boolean.workshop_lights_manual_mode
+        state: 'on'
+    action:
+      - service: switch.turn_off
+        entity_id: switch.workshop_lights
+
+#########################################################
+#
+# Flashing Mode
+#
+#########################################################
+
+script:
+  flash_workshop_lights:
+    sequence:
+      - service: switch.turn_on
+        entity_id: switch.workshop_lights
+#      - delay:
+#          seconds: 1
+#      - service: switch.turn_off
+#        entity_id: switch.workshop_lights
+#      - delay:
+#          seconds: 1
+#      - service: switch.turn_on
+#        entity_id: switch.workshop_lights

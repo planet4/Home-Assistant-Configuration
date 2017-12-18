@@ -1,0 +1,25 @@
+- alias: "Good Morning"
+  trigger:
+    platform: time
+    at: "6:00:00"
+  action:
+    - service: tts.amazon_polly_say
+      data_template:
+        entity_id: media_player.living_room_audio 
+        message: >
+            Good morning.
+            The forecast for today is {{states.sensor.dark_sky_hourly_summary.state}}
+ 
+            {% if states.sensor.netatmo_rain_gauge_sum_rain_1.state | float > 0 %}
+              It has been raining in the last hour.
+            {% endif %}
+
+            The current temperature is {{states.sensor.netatmo_outside_temperature.state}}{{states.sensor.netatmo_outside_temperature.attributes.unit_of_measurement}}
+
+            {% if states.sensor.netatmo_outside_min_temp.state | int < 3 %} 
+              The overnight low was {{states.sensor.netatmo_outside_min_temp.state }} so be careful for ice when you are driving.
+            {% endif %}
+
+            {% if states.sensor.dark_sky_visibility.state | int < 2 %}
+              Please be aware that visibility is currently poor.
+            {% endif %}

@@ -1,0 +1,282 @@
+climate.dining_room:
+  friendly_name: Thermostat
+climate.bedroom_radiator_thermostat:
+  friendly_name: Thermostat
+climate.guest_bedroom_radiator_thermostat:
+  friendly_name: Thermostat
+climate.summer_house:
+  friendly_name: Thermostat
+sensor.dining_room_thermostat_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+sensor.dining_room_thermostat_operation_mode:
+  friendly_name: Thermostat Mode
+sensor.dining_room_thermostat_target:
+  friendly_name: Target Temperature
+sensor.dining_room_thermostat_temperature:
+  friendly_name: Temperature
+device_tracker.iphone:
+  friendly_name: Graeme
+device_tracker.aileensiphone:
+  friendly_name: Aileen
+sensor.device_cctv1:
+  icon: mdi:camera
+sensor.device_cctv2:
+  icon: mdi:camera
+sensor.device_energy_monitor_wifi:
+  icon: mdi:flash
+sensor.device_firetv:
+  icon: mdi:amazon
+sensor.device_hall_wifi:
+  icon: mdi:wifi
+sensor.device_light_controller:
+  icon: mdi:lightbulb
+sensor.device_living_room_htpc:
+  icon: mdi:plex
+sensor.living_room_wifi:
+  icon: mdi:wifi
+sensor.device_mediaserver:
+  icon: mdi:plex
+sensor.device_nest_wifi:
+  icon: mdi:nest-thermostat
+group.all_mobile_devices:
+  friendly_name: People
+group.front_lights:
+  icon: mdi:lightbulb
+group.living_room_lights:
+  friendly_name: Lights
+  icon: mdi:ceiling-light
+input_boolean.cinema_mode:
+  icon: mdi:filmstrip
+input_boolean.cctv_disabled:
+  icon: mdi:camera
+  friendly_name: Disable Motion Detection
+input_boolean.guest_mode:
+  icon: mdi:hotel
+input_boolean.night_mode:
+  icon: mdi:weather-night
+input_boolean.panic:
+  icon: mdi:alert
+input_boolean.visitor:
+  icon: mdi:weather-night
+input_boolean.voice_alerts:
+  icon: mdi:text-to-speech
+light.dining_room:
+  icon: mdi:ceiling-light
+light.guest_bedroom:
+  icon: mdi:ceiling-light
+light.living_room:
+  icon: mdi:ceiling-light
+light.living_room_go_1:
+  friendly_name: Mood
+light.living_room_lamp_1:
+  friendly_name: Lamp
+  icon: mdi:lamp
+light.study:
+  icon: mdi:ceiling-light
+media_player.iphone:
+  friendly_name: Graeme's iPhone
+sensor.bedroom_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+sensor.energy_monitor_min:
+  icon: mdi:flash
+sensor.energy_monitor_mean:
+  icon: mdi:flash
+sensor.energy_monitor_max:
+  icon: mdi:flash
+sensor.house_temperature_min:
+  friendly_name: Minimum Temperature
+sensor.house_temperature_mean:
+  friendly_name: Mean Temperature
+sensor.house_temperature_max:
+  friendly_name: Max Temperature
+sensor.server_uptime:
+  friendly_name: Uptime
+  icon: mdi:clock-start
+sensor.steriliserpower_power:
+  friendly_name: Steriliser Power
+sensor.steriliserpower_voltage:
+  friendly_name: Mains Voltage
+sensor.summerhousedoor_access_control:
+  friendly_name: Door
+sensor.summerhousepower_power:
+  friendly_name: Summer House Heater
+sensor.living_room_battery_level:
+  friendly_name: Upstairs Battery Level
+  icon: mdi:battery
+sensor.living_room_smoke_status:
+  friendly_name: Upstairs Smoke Status
+sensor.living_room_co_status:
+  icon: mdi:weather-fog
+  friendly_name: Upstairs CO Status
+sensor.washingmachinepower_power:
+  icon: mdi:power-socket
+  friendly_name: Washing Machine
+sensor.dark_sky_apparent_temperature:
+  friendly_name: Apparent
+sensor.dark_sky_cloud_coverage:
+  friendly_name: Cloud Coverage
+sensor.dark_sky_daily_summary:
+  friendly_name: Week
+sensor.dark_sky_hourly_summary:
+  friendly_name: 24 Hour
+sensor.dark_sky_ozone:
+  friendly_name: Ozone
+sensor.dark_sky_precip:
+  friendly_name: Precipitation
+  icon: mdi:weather-rainy
+sensor.dark_sky_precip_probability:
+  friendly_name: Probability of Rain
+  icon: mdi:weather-rainy
+sensor.dark_sky_pressure:
+  friendly_name: Air Pressure
+  icon: mdi:chart-line
+sensor.dark_sky_temperature:
+  friendly_name: Temperature
+sensor.dark_sky_visibility:
+  friendly_name: Visibility
+sensor.dark_sky_wind_bearing:
+  friendly_name: Wind Direction
+  icon: mdi:weather-windy
+sensor.dark_sky_wind_speed:
+  friendly_name: Wind Speed
+  icon: mdi:weather-windy
+sensor.draytek_cur_snr_margin:
+  friendly_name: Current SNR Margin
+sensor.draytek_ds_actual_rate:
+  friendly_name: Downstream Actual
+sensor.draytek_us_actual_rate:
+  friendly_name: Upstream Actual
+sensor.draytek_ds_attainable_rate:
+  friendly_name: Downstream Attainable
+sensor.draytek_us_attainable_rate:
+  friendly_name: Upstream Attainable
+sensor.glances_sensor_cpu_load:
+  friendly_name: CPU Load
+sensor.glances_sensor_disk_use:
+  friendly_name: Disk Use
+sensor.glances_sensor_ram_free:
+  friendly_name: Free Memory
+sensor.glances_sensor_running:
+  friendly_name: Running Processes
+sensor.glances_sensor_sleeping:
+  friendly_name: Sleeping Processes
+sensor.glances_sensor_swap_use:
+  friendly_name: Swap Usage
+sensor.netatmo_anemometer_strength_knots:
+  icon: mdi:weather-windy
+sensor.netatmo_anemometer_gust_strength_knots:
+  icon: mdi:weather-windy
+sensor.netatmo_anemometer_angle:
+  friendly_name: Wind direction
+sensor.netatmo_anemometer_battery:
+  friendly_name: Anemometer Battery
+sensor.netatmo_anemometer_gust_angle:
+  friendly_name: Gusting from
+sensor.netatmo_anemometer_gust_strength:
+  friendly_name: Gust strength
+sensor.netatmo_anemometer_radio:
+  friendly_name: Anemometer Radio
+sensor.netatmo_anemometer_strength:
+  friendly_name: Wind strength
+sensor.netatmo_inside_co2:
+  friendly_name: CO2
+sensor.netatmo_inside_humidity:
+  friendly_name: Humidity
+sensor.netatmo_inside_noise:
+  friendly_name: Noise
+sensor.netatmo_inside_pressure:
+  friendly_name: Air Pressure
+sensor.netatmo_inside_temperature:
+  friendly_name: Temperature
+sensor.netatmo_inside_wifi:
+  friendly_name: Netatmo WIFI Signal
+sensor.netatmo_outside_battery:
+  friendly_name: Sensor Battery
+sensor.netatmo_outside_humidity:
+  friendly_name: Humidity
+sensor.netatmo_outside_max_temp:
+  friendly_name: Maximum Temperature
+sensor.netatmo_outside_min_temp:
+  friendly_name: Minimum Temperature
+sensor.netatmo_outside_radio:
+  friendly_name: Sensor Radio
+sensor.netatmo_outside_temperature:
+  friendly_name: Temperature
+sensor.netatmo_rain_gauge_battery:
+  friendly_name: Rain Gauge Battery
+sensor.netatmo_rain_gauge_radio:
+  friendly_name: Rain Gauge Radio
+sensor.netatmo_rain_gauge_rain:
+  friendly_name: Predicted Rainfall
+sensor.netatmo_rain_gauge_sum_rain_1:
+  friendly_name: Rain in last hour
+sensor.netatmo_rain_gauge_sum_rain_24:
+  friendly_name: Rain since midnight
+switch.backfloodlight_switch:
+  friendly_name: Back Flood Light
+switch.backfloodlight_switch_2:
+  friendly_name: Back Door Light
+switch.frontfloodlights_switch:
+  friendly_name: Front Right Flood Light
+switch.frontfloodlights_switch_2:
+  friendly_name: Front Left Flood Light
+switch.nixieclock_switch:
+  icon: mdi:clock
+  friendly_name: Nixie Clock
+switch.studylight_switch:
+  friendly_name: Lamp
+  icon: mdi:lamp
+switch.summerhouselights_switch:
+  friendly_name: Front Lights
+switch.summerhouselights_switch_2:
+  friendly_name: Summerhouse Side Light
+switch.summerhousepower_switch:
+  icon: mdi:oil-temperature
+  friendly_name: Summer House Heater
+weblink.cctv:
+  icon: mdi:camera-iris
+weblink.dashboard:
+  icon: mdi:view-dashboard
+weblink.media_server_plex:
+  icon: mdi:filmstrip
+weblink.router:
+  icon: mdi:router-wireless
+weblink.server_glances:
+  icon: mdi:format-list-bulleted
+weblink.wifi_controller:
+  icon: mdi:wifi
+sensor.broadband_usage_download:
+  icon: mdi:arrow-down-bold-circle
+sensor.broadband_usage_upload:
+  icon: mdi:arrow-up-bold-circle
+sensor.broadband_usage_total:
+  icon: mdi:chart-donut
+sensor.sunrise:
+  icon: mdi:weather-sunset-up
+sensor.sunset:
+  icon: mdi:weather-sunset
+sensor.daylight:
+  icon: mdi:clock
+sensor.house_minimum_temperature:
+  friendly_name: Minimum
+  icon: mdi:thermometer
+sensor.house_mean_temperature:
+  friendly_name: Mean
+  icon: mdi:thermometer
+sensor.house_maximum_temperature:
+  friendly_name: Maximum
+  icon: mdi:thermometer
+sensor.living_room_nest_protect_battery_health:
+  icon: mdi:battery
+sensor.living_room_nest_protect_co_status:
+  entity_picture: mdi:alarm-light
+sensor.living_room_nest_protect_smoke_status:
+  entity_picture: mdi:alarm-light
+sensor.upstairs_nest_protect_battery_health:
+  icon: mdi:battery
+sensor.upstairs_nest_protect_co_status:
+  entity_picture: mdi:alarm-light
+sensor.upstairs_nest_protect_smoke_status:
+  entity_picture: mdi:alarm-light

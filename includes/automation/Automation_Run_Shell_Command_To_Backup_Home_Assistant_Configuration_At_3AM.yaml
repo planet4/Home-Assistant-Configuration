@@ -1,0 +1,13 @@
+############################################################
+#
+# Backup Home Assistant Configuration at 3AM
+#
+############################################################
+
+- id: "Automation_Backup_Home_Assistant_Configuration_At_3AM"
+  alias: "Backup Home Assistant Configuration at 3am"
+  trigger:
+    platform: time
+    at: '03:00:00'
+  action:
+    service: shell_command.backup_config

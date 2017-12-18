@@ -1,0 +1,43 @@
+- alias: Harmony
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.harmony
+    from: 'Select a Activity'
+  action:
+    - service: remote.turn_on
+      entity_id: remote.harmony
+      data_template:
+        activity: >
+          {% if is_state("input_select.harmony", "Power Off") %}
+             -1
+          {% elif is_state("input_select.harmony", "Watch TV") %}
+            24357585 
+          {% elif is_state("input_select.harmony", "Watch Fire TV") %}
+            24358347
+          {% elif is_state("input_select.harmony", "Watch Chromecast") %}
+            24716439
+          {% elif is_state("input_select.harmony", "Listen to Music") %}
+            24358329
+          {% elif is_state("input_select.harmony", "Chromecast Audio") %}
+            24716734
+          {% else %}
+          {% endif %}
+    - service: input_select.select_option
+      entity_id: input_select.harmony
+      data_template:
+        option: "Select a Activity"
+
+- alias: Harmony Off
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.harmony
+    to: 'Power Off'
+  action:
+    - service: remote.turn_off
+      entity_id: remote.harmony
+    - service: input_select.select_option
+      entity_id: input_select.harmony
+      data_template:
+        option: "Select a Activity"

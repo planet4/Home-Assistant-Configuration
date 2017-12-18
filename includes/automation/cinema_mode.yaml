@@ -1,0 +1,31 @@
+###########################################################
+#
+# START Cinema Mode On SCRIPT when Cinema Mode is ON
+#
+############################################################
+
+- alias: START Cinema Mode On SCRIPT when Cinema Mode is ON
+  trigger:
+    platform: state
+    entity_id: input_boolean.cinema_mode 
+    to: 'on'
+  action:
+    service: script.turn_on
+    entity_id: 
+      - script.cinema_mode_on
+
+############################################################
+#
+# START Cinema Mode Off SCRIPT when Cinema Mode is Off
+#
+############################################################
+
+- alias: START Cinema Mode Off SCRIPT when Cinema Mode is OFF
+  trigger:
+    platform: state
+    entity_id: input_boolean.cinema_mode 
+    to: 'off'
+  action:
+    service: script.turn_on
+    entity_id: 
+      - script.cinema_mode_off

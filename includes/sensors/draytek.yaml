@@ -1,0 +1,5 @@
+- platform: draytek
+  host: !secret draytek_host
+  port: !secret draytek_port
+  username: !secret draytek_username
+  password: !secret draytek_password

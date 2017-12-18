@@ -1,0 +1,178 @@
+############################################################
+#
+# Home Assistant Porch Lights Motion Automation
+#
+############################################################
+
+homeassistant:
+  customize:
+    light.porch:
+      friendly_name: 'Light'
+      icon: mdi:ceiling-light
+    light.hall:
+      friendly_name: 'Light'
+      icon: mdi:ceiling-light
+    light.bathroom_1:
+      friendly_name: 'Light'
+      icon: mdi:ceiling-light
+    light.kitchen:
+      friendly_name: 'Light'
+      icon: mdi:ceiling-light
+    light.upstairs_hall:
+      friendly_name: 'Light'
+      icon: mdi:ceiling-light
+
+timer:
+  porch_light:
+    duration: '00:03:00'
+  hall_light:
+    duration: '00:03:00'
+  bathroom_light:
+    duration: '00:10:00'
+  kitchen_light:
+    duration: '00:03:00'
+  upstairs_hall_light:
+    duration: '00:01:00'
+
+switch:
+  - platform: flux
+    lights:
+      - light.porch
+      - light.hall
+      - light.bathroom_1
+      - light.kitchen
+      - light.upstairs_hall
+      - light.stairs
+
+automation:
+
+############################################################
+#
+# Home Assistant Porch Lights Motion Automation
+#
+############################################################
+
+  - alias: Porch Light ON when Motion is ACTIVE
+    trigger:
+      platform: state
+      entity_id: sensor.porch_motion_sensor
+      to: 'Motion'
+    condition:
+      - condition: state
+        entity_id: sensor.light_sensor
+        state: 'Night'
+    action:
+      - service: timer.start
+        entity_id: timer.porch_light
+      - service: light.turn_on
+        entity_id: light.porch
+#        data_template:
+#          brightness: "{{ states('sensor.time_brightness')|int }}"
+
+  - alias: "Turn off Porch Light at end of timer"
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.porch_light
+    action:
+      - service: light.turn_off
+        entity_id: light.porch
+
+############################################################
+#
+# Home Assistant Hall Lights Motion Automation
+#
+############################################################
+
+  - alias: Hall Light ON when Motion is ACTIVE
+    trigger:
+      platform: state
+      entity_id: sensor.hall_motion_sensor
+      to: 'Motion'
+    action:
+      - service: timer.start
+        entity_id: timer.hall_light
+      - service: light.turn_on
+        entity_id: light.hall
+#        data_template:
+#          brightness: "{{ states('sensor.time_brightness')|int }}"
+
+  - alias: "Turn off Hall lights at end of timer"
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.hall_light
+    action:
+      - service: light.turn_off
+        entity_id: light.hall
+
+############################################################
+#
+# Home Assistant Kitchen Light Strip Motion Automation
+#
+############################################################
+
+  - alias: Kitchen Light Strip ON when Motion is ACTIVE
+    trigger:
+      platform: state
+      entity_id: sensor.kitchen_motion_sensor
+      to: 'Motion'
+    condition:
+      - condition: state
+        entity_id: sensor.light_sensor
+        state: 'Night'
+    action:
+      - service: timer.start
+        entity_id: timer.kitchen_light
+      - service: light.turn_on
+        entity_id: light.kitchen
+#        data_template:
+#          brightness: "{{ states('sensor.time_brightness')|int }}"
+
+  - alias: "Turn off Kitchen Light Strip at end of timer"
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.kitchen_light
+    action:
+      - service: light.turn_off
+        entity_id: light.kitchen
+
+############################################################
+#
+# Home Assistant Upstairs Hall Motion Automation
+#
+############################################################
+
+  - alias: Upstairs Hall Light ON when Motion is ACTIVE
+    trigger:
+      - platform: state
+        entity_id: sensor.upper_stairs_motion_sensor
+        to: 'Motion'
+      - platform: state
+        entity_id: sensor.lower_stairs_motion_sensor
+        to: 'Motion'
+    condition:
+      - condition: state
+        entity_id: sensor.light_sensor
+        state: 'Night'
+    action:
+      - service: timer.start
+        entity_id: timer.upstairs_hall_light
+      - service: light.turn_on
+        entity_id: light.upstairs_hall
+#        data_template:
+#          brightness: "{{ states('sensor.time_brightness')|int }}"
+
+  - alias: "Turn off Upstairs Hall Light at end of timer"
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.upstairs_hall_light
+    action:
+      - service: light.turn_off
+        entity_id: light.upstairs_hall

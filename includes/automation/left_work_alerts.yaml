@@ -1,0 +1,53 @@
+- alias: GRAEME has left WORK
+  trigger:
+    platform: zone
+    entity_id: device_tracker.graemes_iphone
+    zone: zone.kongsberg_maritime
+    event: leave
+  action:
+   - service: notify.ios_aileens_iphone
+     data:
+       message: 'Graeme will be home at {{ (as_timestamp(now()) + states.sensor.graeme_to_home.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%I:%M %p", true)}} '
+       data:
+         push:
+           category: map
+         action_data:
+           shows_user_location: true
+           latitude: "{{ trigger.to_state.attributes.latitude }}"
+           longitude: "{{ trigger.to_state.attributes.longitude }}"
+
+
+- alias: GRAEME is 10 minutes from home
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.graeme_to_home
+    value_template: '{{ states.graeme_to_home.attributes.duration.split(" ")[0] | int *60 }}'
+    below: 600
+  action:
+   - service: notify.ios_aileens_iphone
+     data:
+       message: 'Graeme is {{ states.sensor.graeme_to_home.attributes.duration.split(" ")[0] }} minutes from home'
+       data:
+         push:
+           category: map
+         action_data:
+           shows_user_location: true
+           latitude: "{{ trigger.to_state.attributes.latitude }}"
+           longitude: "{{ trigger.to_state.attributes.longitude }}"
+
+- alias: AILEEN has left WORK
+  trigger:
+    platform: zone
+    entity_id: device_tracker.aileens_iphone
+    zone: zone.echomaster_marine
+    event: leave
+  action:
+   - service: notify.ios_graemes_iphone
+     data:
+       message: 'Aileen will be home at {{ (as_timestamp(now()) + states.sensor.aileen_to_home.attributes.duration.split(" ")[0] | int *60 ) | timestamp_custom("%I:%M %p", true)}}'
+       data:
+         push:
+           category: map
+         action_data:
+           latitude: "{{ trigger.to_state.attributes.latitude }}"
+           longitude: "{{ trigger.to_state.attributes.longitude }}"

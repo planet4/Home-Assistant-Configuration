@@ -1,0 +1,40 @@
+############################################################
+#
+# Home Assistant Water Tank Alarm Automation 
+#
+############################################################
+
+- alias: "NOTIFY Water Group when WATER TANK is CRITICAL" 
+  trigger:
+    - platform: state
+      entity_id: sensor.water_tank_status
+      from: 'OK'
+      to: 'LOW'
+  action:
+    - service: notify.notify_water
+      data_template:
+        message: 'ALARM: Water Tank Critical'
+
+- alias: "NOTIFY Water Group when WATER TANK is OK" 
+  trigger:
+    - platform: state
+      entity_id: sensor.water_tank_status
+      from: 'LOW'
+      to: 'OK'
+  action:
+    - service: notify.notify_water
+      data_template:
+        message: 'ALARM: Water Tank OK'
+
+- alias: "NOTIFY Water Group when WATER TANK has TIMED OUT" 
+  trigger:
+    - platform: state
+      entity_id: sensor.water_tank_last_message
+      to: 'TIMEOUT'
+  action:
+    - service: notify.notify_graeme
+      data_template:
+        message: 'ALARM: Water Tank Signal Timeout'
+
+
+

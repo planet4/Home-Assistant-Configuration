@@ -1,0 +1,40 @@
+###############################################################
+#
+# Notify all by alert when a temperature is low
+#
+###############################################################
+
+- id: Notify_All_When_Utility_Room_Temperature_is_Low
+  alias: 'Notify all by alert when temperature is low in utility room'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.utility_room_temperature
+      below: 3 
+  action:
+    service: notify.notify_all
+    data_template:
+      message: "Warning: Utility Room Temperature is Low"
+
+- id: Notify_All_When_Attic_Temperature_is_Low
+  alias: 'Notify all by alert when temperature is low in the attic'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.attic_temperature
+      below: 5 
+  action:
+    service: notify.notify_all
+    data_template:
+      message: "Warning: Attic Temperature is Low"
+
+- id: Notify_All_When_Water_Steriliser_Temperature_is_Low
+  alias: 'Notify all by alert when temperature is low in water steriliser'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.steriliser_temperature
+      below: 3 
+  action:
+    service: notify.notify_all
+    data_template:
+      message: "Warning: Steriliser Temperature is Low"
+
+

@@ -1,0 +1,73 @@
+##################################################################
+#
+# Toggle Sunrise Input Boolean when Light Sensor Changes to Day
+#
+##################################################################
+
+- alias: Store Sunrise Time
+  initial_state: False
+  trigger:
+    platform: state
+    entity_id: sensor.light_sensor
+    from: 'Night'
+    to: 'Day'
+  condition:
+    condition: time
+    after: '01:00:00'
+    before: '11:00:00'
+  action:
+    - service: mqtt.publish
+      alias: MQTT Store Sunrise Time
+      data:
+        topic: 'hass/storage/light/sunrise'
+        payload_template: '{{ as_timestamp(now()) | timestamp_custom("%-I:%M%P") }}'
+        retain: 'true'
+
+##################################################################
+#
+# Toggle Sunset Input Boolean when Light Sensor Changes to Night 
+#
+##################################################################
+
+- alias: Store Sunset Time
+  initial_state: False
+  trigger: 
+    platform: state
+    entity_id: sensor.light_sensor
+    from: 'Day'
+    to: 'Night'
+  condition:
+    condition: time
+    after: '13:00:00'
+    before: '23:00:00'
+  action:
+    - service: mqtt.publish
+      alias: MQTT Store Sunset Time
+      data:
+        topic: 'hass/storage/light/sunset'
+        payload_template: '{{ as_timestamp(now()) | timestamp_custom("%-I:%M%P") }}'
+        retain: 'true'
+    - service: mqtt.publish
+      alias: MQTT Store Daylight Length
+      data:
+        topic: 'hass/storage/light/daylight'
+        payload_template: >-
+          {% set daylight = as_timestamp(strptime(states.sensor.sunset.state, "%I:%M%p")) - as_timestamp(strptime(states.sensor.sunrise.state, "%I:%M%p")) %}
+          {% set minutes = ((daylight % 3600) / 60) | int %}
+          {% set hours = ((daylight % 86400) / 3600) | int %}
+          {{ "%s hours %s minutes" | format(hours, minutes) }}
+        retain: 'true'
+
+- alias: START - Delay Sunrise and Sunset Automations on Restart
+  hide_entity: True
+  trigger:
+     platform: homeassistant
+     event: start
+  action:
+    - delay:
+        seconds: 60
+    - service: automation.turn_on
+      entity_id: automation.store_sunrise_time
+    - service: automation.turn_on
+      entity_id: automation.store_sunset_time
+

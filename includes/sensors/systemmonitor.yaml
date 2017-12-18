@@ -1,0 +1,4 @@
+- platform: systemmonitor
+  resources:
+    - type: since_last_boot
+

@@ -1,0 +1,16 @@
+###############################################################
+#
+# Notify all by email when an aurora is forecast
+#
+###############################################################
+
+- id: Automation_Notify_All_By_Email_When_An_Aurora_Is_Forecast
+  alias: 'Notify all by email when an aurora is forecast'
+  trigger:
+    platform: state
+    to: 'on'
+    entity_id: binary_sensor.aurora_visibility
+  action:
+    service: notify.notify_all_email
+    data_template:
+      message: "Aurora Forecast: {{ states('binary_sensor.aurora_visibility.attributes.message') }}."

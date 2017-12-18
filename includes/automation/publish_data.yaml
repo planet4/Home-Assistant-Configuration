@@ -1,0 +1,115 @@
+############################################################
+#
+# Home Assistant Publish data to MQTT
+#
+############################################################
+
+- alias: Publish Temperature Data to MQTT
+  trigger:
+    - platform: state
+      entity_id: sensor.netatmo_outside_temperature
+    - platform: homeassistant
+      event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'weather/temperature'
+      payload_template: "{{ states('sensor.netatmo_outside_temperature') }}"
+
+- alias: Publish Maximum Temperature Data to MQTT
+  trigger:
+    - platform: state
+      entity_id: sensor.netatmo_outside_max_temp
+    - platform: homeassistant
+      event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'weather/max_temperature'
+      payload_template: "{{ states('sensor.netatmo_outside_max_temp') }}"
+
+- alias: Publish Minimum Temperature Data to MQTT
+  trigger:
+    - platform: state
+      entity_id: sensor.netatmo_outside_min_temp
+    - platform: homeassistant
+      event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'weather/min_temperature'
+      payload_template: "{{ states('sensor.netatmo_outside_min_temp') }}"
+
+- alias: Publish Rainfall Data to MQTT
+  trigger:
+    - platform: state
+      entity_id: sensor.netatmo_rain_gauge_sum_rain_24
+    - platform: homeassistant
+      event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'weather/rainfall'
+      payload_template: "{{ states('sensor.netatmo_rain_gauge_sum_rain_24') }}"
+
+- alias: Publish Humidity Data to MQTT
+  trigger:
+    - platform: state
+      entity_id: sensor.netatmo_outside_humidity
+    - platform: homeassistant
+      event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'weather/humidity'
+      payload_template: "{{ states('sensor.netatmo_outside_humidity') }}"
+
+- alias: Publish Pressure Data to MQTT
+  trigger:
+    - platform: state
+      entity_id: sensor.netatmo_inside_pressure
+    - platform: homeassistant
+      event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'weather/pressure'
+      payload_template: "{{ states('sensor.netatmo_inside_pressure') }}"
+
+
+- alias: Publish Luminosity Data to MQTT
+  trigger:
+    - platform: state
+      entity_id: sensor.lightsensor_luminance
+    - platform: homeassistant
+      event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'weather/luminance'
+      payload_template: "{{ states('sensor.lightsensor_luminance') }}"
+
+- alias: Publish Wind Data to MQTT
+  trigger:
+    - platform: state
+      entity_id: sensor.netatmo_anemometer_strength_knots
+    - platform: homeassistant
+      event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'weather/windspeed'
+      payload_template: "{{ states('sensor.netatmo_anemometer_strength_knots') }}"
+
+- alias: Publish Gust Data to MQTT
+  trigger:
+    - platform: state
+      entity_id: sensor.netatmo_anemometer_gust_strength_knots
+    - platform: homeassistant
+      event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: 'weather/gustspeed'
+      payload_template: "{{ states('sensor.netatmo_anemometer_gust_strength_knots') }}"
+

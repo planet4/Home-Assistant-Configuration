@@ -1,0 +1,80 @@
+"sensor.device_*":
+  icon: 'mdi:network'
+"light.*":
+  friendly_name: Light
+"sensor.template_*_door":
+  friendly_name: Door
+  icon: 'mdi:door'
+"sensor.*_luminance":
+  friendly_name: Luminance
+  icon: 'mdi:white-balance-sunny'
+"sensor.*_temperature":
+  friendly_name: Temperature
+  icon: 'mdi:thermometer'
+"sensor.*_battery":
+  icon: 'mdi:battery'
+"sensor.next_calendar_*":
+  icon: 'mdi:calendar'
+"sensor.*_cpu_load":
+  friendly_name: CPU Load
+  icon: 'mdi:chip'
+"sensor.*_disk_free":
+  friendly_name: Disk Free
+  icon: 'mdi:harddisk'
+"sensor.*_disk_use":
+  friendly_name: Disk Use
+  icon: 'mdi:harddisk'
+"sensor.*_disk_use_2":
+  friendly_name: Disk Free
+  icon: 'mdi:harddisk'
+"sensor.*_ram_free":
+  friendly_name: Free Memory
+  icon: 'mdi:memory'
+"sensor.*_ram_use":
+  friendly_name: Memory Used
+  icon: 'mdi:memory'
+"sensor.*_ram_use_2":
+  friendly_name: Memory Used
+  icon: 'mdi:memory'
+"sensor.*_running":
+  friendly_name: Running Processes
+  icon: 'mdi:application'
+"sensor.*_sleeping":
+  friendly_name: Sleeping Processes
+  icon: 'mdi:application'
+"sensor.*_swap_free":
+  friendly_name: Free Swap Memory
+  icon: 'mdi:memory'
+"sensor.*_swap_use":
+  friendly_name: Swap Memory Used
+  icon: 'mdi:memory'
+"sensor.*_swap_use_2":
+  friendly_name: Swap Memory Used
+  icon: 'mdi:memory'
+"sensor.*_bios":
+  icon: 'mdi:chip'
+"sensor.*_fans":
+  icon: 'mdi:fan'
+"sensor.*_fan":
+  icon: 'mdi:fan'
+"sensor.*_memory":
+  icon: 'mdi:memory'
+"sensor.*_network":
+  icon: 'mdi:ethernet'
+"sensor.*_power":
+  icon: 'mdi:power-plug'
+"sensor.*_processor":
+  icon: 'mdi:chip'
+"sensor.*_storage":
+  icon: 'mdi:harddisk'
+"sensor.aileen*to_*":
+  icon: 'mdi:car'
+"sensor.graeme*to_*":
+  icon: 'mdi:car'
+"switch.*floodlight*":
+  icon: 'mdi:lightbulb'
+"switch.summerhouselights*":
+  icon: 'mdi:lightbulb'
+"switch.utilityroomlights*":
+  icon: 'mdi:lightbulb'
+
