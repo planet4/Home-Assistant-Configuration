@@ -15,6 +15,7 @@
 *.wav
 *.mp3
 *.txt
+*.sqlite
 home-assistant.log.*
 
 # Hidden Files
