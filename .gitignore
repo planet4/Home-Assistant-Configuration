@@ -14,6 +14,7 @@
 *.cfg
 *.wav
 *.mp3
+*.txt
 home-assistant.log.*
 
 # Hidden Files
