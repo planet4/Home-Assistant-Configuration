@@ -5,20 +5,38 @@
 ############################################################
 
 - platform: mqtt
+  state_topic: "house/attic/temp"
+  name: "Attic Temperature"
+  qos: 0
+  unit_of_measurement: "°C"
+
+- platform: mqtt
   state_topic: "house/mainbedroom/temp"
-  name: "Bedroom"
+  name: "Bedroom Temperature"
   qos: 0
   unit_of_measurement: "°C"
 
 - platform: mqtt
   state_topic: "house/utilityroom/temp"
-  name: "Utility Room"
+  name: "Utility Room Temperature"
   qos: 0
   unit_of_measurement: "°C"
 
 - platform: mqtt
-  state_topic: "house/energymonitor/1"
-  name: "Energy Monitor"
+  state_topic: "house/watersteriliser/temp"
+  name: "Water Steriliser Temperature"
+  qos: 0
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "house/energymonitor/1/power"
+  name: "Total Power Usage"
+  qos: 0
+  unit_of_measurement: "W"
+
+- platform: mqtt
+  state_topic: "house/energymonitor/2/power"
+  name: "No. 6 Power Usage"
   qos: 0
   unit_of_measurement: "W"
 
@@ -27,3 +45,67 @@
   name: "Bedroom Humidity"
   qos: 0
   unit_of_measurement: "%"
+
+- platform: mqtt
+  state_topic: "lorawan/gateway/1/2"
+  name: "RF TX Signal Strength"
+  qos: 0
+  unit_of_measurement: "dBm"
+
+- platform: mqtt
+  state_topic: "lorawan/gateway/1/3"
+  name: "RF TX SNR"
+  qos: 0
+  unit_of_measurement: "dBm"
+
+- platform: mqtt
+  state_topic: "lorawan/gateway/1/4"
+  name: "RF TX Battery"
+  qos: 0
+  unit_of_measurement: "V"
+
+- platform: mqtt
+  state_topic: "lorawan/gateway/1/7"
+  name: "RF TX Messages Lost"
+  qos: 0
+  unit_of_measurement: "messages"
+
+- platform: mqtt
+  state_topic: "lorawan/gateway/1/1"
+  name: "Water Tank Status"
+  qos: 0
+  value_template: 
+    '{% if value is equalto "0" %} OK {% elif value is equalto "1"%} LOW {% elif value is equalto "2" %} DISABLED {% else %}UNKNOWN{% endif %}'
+
+- platform: mqtt
+  state_topic: "Garden/SoilTemp1"
+  name: "Soil Temperature Upper"
+  qos: 0
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "Garden/SoilTemp2"
+  name: "Soil Temperature Lower"
+  qos: 0
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  state_topic: "Battery/SoilTempSensor1"
+  name: "Soil Temperature Battery"
+  qos: 0
+  unit_of_measurement: "V"
+
+- platform: mqtt
+  state_topic: "hass/storage/light/sunrise"
+  name: "Sunrise"
+  qos: 0
+
+- platform: mqtt
+  state_topic: "hass/storage/light/sunset"
+  name: "Sunset"
+  qos: 0
+
+- platform: mqtt
+  state_topic: "hass/storage/light/daylight"
+  name: "Daylight"
+  qos: 0

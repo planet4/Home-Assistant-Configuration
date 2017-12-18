@@ -1,12 +1,9 @@
-- platform: kodi
-  name: rasplex
-  host: !secret rasplex_host
-  port: !secret rasplex_port
+- platform: webostv
+  host: !secret webostv_host
+  name: !secret webostv_name
 
 - platform: twilio_sms
   name: twilio_sms
-  account_sid: !secret twilio_account_sid
-  auth_token: !secret twilio_auth_token
   from_number: !secret twilio_from_number
 
 - platform: smtp
@@ -47,12 +44,34 @@
   services:
     - service: as_sms
     - service: as_email
+    - service: ios_aileens_iphone
 
 - platform: group
   name: notify_graeme 
   services:
     - service: gs_sms
     - service: gs_email
+    - service: ios_graemes_iphone
+
+- platform: group
+  name: ios_all
+  services:
+    - service: ios_aileens_iphone
+    - service: ios_graemes_iphone
+
+- platform: group
+  name: notify_all_email
+  services:
+    - service: gs_email
+    - service: as_email
+
+- platform: group
+  name: notify_water
+  services:
+    - service: notify_aileen
+    - service: notify_graeme
+    - service: html5
+    - service: rasplex
 
 - platform: group
   name: notify_all
@@ -61,3 +80,5 @@
     - service: notify_graeme
     - service: html5
     - service: rasplex
+
+- platform: ios

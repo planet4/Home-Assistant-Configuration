@@ -1,2 +1,2 @@
 #!/bin/bash
-find /config -name "*.yaml" -exec cat {} \; | sed '/^\s*#/d;/^\s*$/d' | wc -l
+find /home/homeassistant/.homeassistant -name "*.yaml" -exec cat {} \; | sed '/^\s*#/d;/^\s*$/d' | wc -l

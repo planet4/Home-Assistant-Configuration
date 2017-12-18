@@ -12,19 +12,25 @@ default_view:
     - group.security
     - group.cctv_motion
     - group.central_heating
-    - sensor.steriliserpower_power_4_8
-    - sensor.energy_monitor
+    - sensor.steriliserpower_power
+    - sensor.total_power_usage
+    - sensor.no_5_power_usage
+    - sensor.no_6_power_usage
     - sensor.ups_load
     - sensor.ups_input_voltage
-    - sensor.washing_machine 
-    - sensor.summerhousepower_power_15_8
-    - binary_sensor.driveway
-    - binary_sensor.courtyard
-    - binary_sensor.front_pir
-    - binary_sensor.summer_house
+    - sensor.washing_machine
+    - sensor.summerhousepower_power
+    - binary_sensor.pir_driveway
+    - binary_sensor.pir_courtyard
+    - binary_sensor.pir_front
+    - binary_sensor.pir_summer_house
     - binary_sensor.doorbell_door
     - binary_sensor.doorbell_gate
     - group.calendar
+    - group.water_tank
+    - group.christmas
+    - history_graph.power_usage
+    - switch.flux
 
 Calendar:
   - sensor.next_calendar_event
@@ -36,18 +42,26 @@ Security:
     - input_boolean.panic
     - input_boolean.night_mode
     - input_boolean.voice_alerts
-    - input_boolean.visitor
+    - input_boolean.evening_visitor_mode
 
 CCTV Motion:
   - input_boolean.cctv_disabled
 
 Radio:
   - input_select.radio_player
-  - input_select.radio_station 
+  - input_select.radio_station
 
 Christmas:
-  - switch.livingroomrepeater_switch_18_0
+  - switch.livingroomrepeater_switch
 
 Central Heating:
   - climate.dining_room
 
+Water Tank:
+  - sensor.water_tank_status
+  - sensor.rf_tx_battery
+  - sensor.rf_tx_signal_strength
+  - sensor.rf_tx_snr
+  - sensor.rf_tx_messages_lost
+  - binary_sensor.charging
+  - binary_sensor.fully_charged

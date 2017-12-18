@@ -5,20 +5,16 @@
 ############################################################
 
 Panic Lights:
-  - switch.backfloodlight_switch_8_0
-  - switch.backfloodlight_switch_8_0_2
-  - switch.frontfloodlights_switch_10_0
-  - switch.frontfloodlights_switch_10_0_2
-  - switch.summerhouselights_switch_16_0
-  - switch.summerhouselights_switch_16_0_2
-  - switch.utilityroomlights_switch_24_0_2
+  - switch.backfloodlight_switch
+  - switch.backfloodlight_switch_2
+  - switch.frontfloodlights_switch
+  - switch.frontfloodlights_switch_2
+  - switch.summerhouselights_switch
+  - switch.summerhouselights_switch_2
+  - switch.utilityroomlights_switch_2
 
 Visitor Lights:
-  - light.workshoplight_level_6_0
-  - switch.summerhouselights_switch_16_0_2
-  - switch.backfloodlight_switch_8_0
-  - switch.backfloodlight_switch_8_0_2
-  - switch.utilityroomlights_switch_24_0_2
+  - group.courtyard
 
 All Lights Except Bedroom:
   - light.living_room_lamp
@@ -33,14 +29,16 @@ All Lights Except Bedroom:
   - light.porch
   - light.hall
   - light.dining_room
-  - switch.backfloodlight_switch_8_0
-  - switch.backfloodlight_switch_8_0_2
-  - switch.frontfloodlights_switch_10_0
-  - switch.frontfloodlights_switch_10_0_2
-  - switch.summerhouselights_switch_16_0
-  - switch.summerhouselights_switch_16_0_2
-  - switch.utilityroomlights_switch_24_0
-  - switch.utilityroomlights_switch_24_0_2
+  - light.study
+  - switch.backfloodlight_switch
+  - switch.backfloodlight_switch_2
+  - switch.frontfloodlights_switch
+  - switch.frontfloodlights_switch_2
+  - switch.studylight_switch
+  - switch.summerhouselights_switch
+  - switch.summerhouselights_switch_2
+  - switch.utilityroomlights_switch
+  - switch.utilityroomlights_switch_2
    
 All Lights Except Bedroom and Guest:
   - light.living_room_lamp
@@ -54,12 +52,13 @@ All Lights Except Bedroom and Guest:
   - light.porch
   - light.hall
   - light.dining_room
-  - switch.backfloodlight_switch_8_0
-  - switch.backfloodlight_switch_8_0_2
-  - switch.frontfloodlights_switch_10_0
-  - switch.frontfloodlights_switch_10_0_2
-  - switch.summerhouselights_switch_16_0
-  - switch.summerhouselights_switch_16_0_2
-  - switch.utilityroomlights_switch_24_0
-  - switch.utilityroomlights_switch_24_0_2
-
+  - light.study
+  - switch.backfloodlight_switch
+  - switch.backfloodlight_switch_2
+  - switch.frontfloodlights_switch
+  - switch.frontfloodlights_switch_2
+  - switch.studylight_switch
+  - switch.summerhouselights_switch
+  - switch.summerhouselights_switch_2
+  - switch.utilityroomlights_switch
+  - switch.utilityroomlights_switch_2

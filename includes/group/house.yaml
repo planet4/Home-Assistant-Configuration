@@ -8,11 +8,12 @@ house:
   view: yes
   icon: mdi:home
   entities:
-    - group.temperatures
+    - group.house_temperatures
     - group.energy
     - group.all_mobile_devices
     - group.cctv
     - group.safety
+    - camera.attic
 
 CCTV:
   - switch.cctv_intrusion_detection
@@ -20,19 +21,28 @@ CCTV:
   - switch.cctv_motion
 
 Safety:
-  - sensor.dining_room_battery_level
-  - sensor.dining_room_co_status
-  - sensor.dining_room_smoke_statust
+  - sensor.living_room_nest_protect_battery_health 
+  - sensor.living_room_nest_protect_co_status
+  - sensor.living_room_nest_protect_smoke_status 
+  - sensor.upstairs_nest_protect_battery_health 
+  - sensor.upstairs_nest_protect_co_status
+  - sensor.upstairs_nest_protect_smoke_status 
 
-Temperatures:
-  - sensor.house_temperature_min
-  - sensor.house_temperature_mean
-  - sensor.house_temperature_max
+House Temperatures:
+  - sensor.house_minimum_temperature
+  - sensor.house_mean_temperature
+  - sensor.house_maximum_temperature
 
 Energy:
-  - sensor.energy_monitor_min
-  - sensor.energy_monitor_mean
-  - sensor.energy_monitor_max
+  - sensor.total_electricity_usage_min
+  - sensor.total_electricity_usage_mean
+  - sensor.total_electricity_usage_max
+  - sensor.no_5_electricity_usage_min
+  - sensor.no_5_electricity_usage_mean
+  - sensor.no_5_electricity_usage_max
+  - sensor.no_6_electricity_usage_min
+  - sensor.no_6_electricity_usage_mean
+  - sensor.no_6_electricity_usage_max
 
 all_mobile_devices:
   - device_tracker.aileensiphone

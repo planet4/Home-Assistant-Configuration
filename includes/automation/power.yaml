@@ -10,7 +10,7 @@
     entity_id: sensor.ups_input_voltage 
     above: 253
   action:
-    service: notify.notify_all
+    service: notify.notify_graeme
     data_template:
       title: 'Electricity Supply Voltage High'
       message: >
@@ -28,7 +28,7 @@
     entity_id: sensor.ups_input_voltage 
     below: 230
   action:
-    service: notify.notify_all
+    service: notify.notify_graeme
     data_template:
       title: 'Electricity Supply Voltage Low'
       message: >

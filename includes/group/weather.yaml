@@ -20,14 +20,22 @@ Weather:
     - sensor.netatmo_anemometer_strength_knots
     - sensor.netatmo_anemometer_gust_angle
     - sensor.netatmo_anemometer_gust_strength_knots
-    - sensor.lightsensor_luminance_14_3
+    - sensor.lightsensor_luminance
+    - binary_sensor.aurora_visibility
+    - sensor.season
     - group.historic
     - group.forecast
+    - camera.weather_map
 
 Historic:
   - sensor.netatmo_outside_max_temp
   - sensor.netatmo_outside_min_temp
   - sensor.netatmo_rain_gauge_sum_rain_24
+  - history_graph.outside_temperatures
+  - history_graph.air_pressure
+  - sensor.sunrise
+  - sensor.sunset
+  - sensor.daylight
 
 Forecast:
   - sensor.netatmo_rain_gauge_rain

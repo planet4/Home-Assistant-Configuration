@@ -10,7 +10,7 @@ front_floodlights_motion_helper:
         minutes: 2
     - service: switch.turn_off
       data:
-        entity_id: switch.frontfloodlights_switch_10_0, switch.frontfloodlights_switch_10_0_2
+        entity_id: switch.frontfloodlights_switch, switch.frontfloodlights_switch_2
 
 front_floodlights_motion_timer:
   sequence:
@@ -18,15 +18,10 @@ front_floodlights_motion_timer:
       data:
         entity_id: script.front_floodlights_motion_helper
     - service: switch.turn_on
-      entity_id: switch.frontfloodlights_switch_10_0, switch.frontfloodlights_switch_10_0_2
+      entity_id: switch.frontfloodlights_switch, switch.frontfloodlights_switch_2
     - service: script.turn_on
       data:
         entity_id: script.front_floodlights_motion_helper
     - condition: state
       entity_id: 'input_boolean.voice_alerts'
       state: 'on'
-    - service: tts.amazon_polly_say
-      data:
-        entity_id: media_player.bedroom
-        message: 'Motion detected at the front of the house'
-

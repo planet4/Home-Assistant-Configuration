@@ -6,45 +6,70 @@
 
 homeassistant:
   name: Home
-  latitude: !secret latitude 
-  longitude: !secret longitude 
+  latitude: !secret latitude
+  longitude: !secret longitude
   elevation: !secret elevation
   unit_system: metric
   time_zone: Europe/London
-  customize: !include includes/customise.yaml
-  packages: 
-    cctv: !include includes/packages/CCTV.yaml
-
+  customize: !include customize.yaml
+  customize_glob: !include includes/customise_glob.yaml
+  packages: !include_dir_named packages
 http:
   base_url: !secret base_url
-  api_password: !secret http_password 
-  server_host: !secret server_host 
-  trusted_networks:
-    - 127.0.0.1
-    - ::1
-    - 192.168.2.0/24
-    - 2001:DB8:ABCD::/48
+  api_password: !secret http_password
+  server_host: !secret server_host
   ip_ban_enabled: True
   login_attempts_threshold: 3
-    
+
 history:
+  exclude:
+    domains:
+      - automation
+      - weblink
+      - updater
+      - media_player
+  include:
+    domains:
+      - sensor
+      - binary_sensor
+      - switch
+      - climate
+
+config:
 
 updater:
   reporting: no
 
+recorder:
+  purge_interval: 1
+  purge_keep_days: 7
+  exclude:
+    domains:
+      - automation
+      - weblink
+      - updater
+      - media_player
+  include:
+    domains:
+      - sensor
+      - binary_sensor
+      - switch
+      - climate
+
 frontend:
+#  javascript_version: latest
 
 discovery:
 
+ios:
+
 influxdb:
   host: !secret influxdb_host
-  database: !secret influxdb_database 
-  username: !secret influxdb_username 
+  database: !secret influxdb_database
+  username: !secret influxdb_username
   password: !secret influxdb_password
 
-recorder:
-  db_url: !secret mysql_path
-  purge_days: 3
+map:
 
 sun:
   elevation: 214
@@ -55,10 +80,9 @@ sun:
 #
 ############################################################
 
-light:
-  platform: hue
-  host: !secret hue_ip 
-  allow_unreachable: true
+hue:
+  bridges:
+    - host: !secret hue_ip
 
 nest:
   client_id: !secret nest_client_id
@@ -69,19 +93,22 @@ mqtt:
   port: !secret mqtt_port
   client_id: !secret mqtt_client_id
   keepalive: 60
-  username: !secret mqtt_username 
-  password: !secret mqtt_password 
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+mqtt_statestream:
+  base_topic: homeassistant
 
 google:
   client_id: !secret google_calendar_client_id
   client_secret: !secret google_calendar_client_secret
 
 zwave:
-  usb_path: /zwaveusbstick
+  usb_path: /dev/zwave
 
 netatmo:
   api_key: !secret netatmo_api_key
-  secret_key: !secret netatmo_secret_key 
+  secret_key: !secret netatmo_secret_key
   username: !secret netatmo_username
   password: !secret netatmo_password
 
@@ -101,6 +128,26 @@ tts:
     region_name: 'eu-west-1'
     voice: 'Amy'
 
+panel_iframe:
+  grafana:
+    title: 'Grafana'
+    url: !secret grafana_url
+    icon: mdi:chart-areaspline
+
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
+
+twilio:
+  account_sid: !secret twilio_account_sid
+  auth_token: !secret twilio_auth_token
+
+maxcube:
+  host: !secret maxcube_host
+
 ###########################################################
 #
 # Includes
@@ -113,18 +160,20 @@ binary_sensor: !include includes/binary_sensors.yaml
 camera: !include includes/cameras.yaml
 climate: !include includes/climate.yaml
 device_tracker: !include includes/device_trackers.yaml
+history_graph: !include includes/history_graph.yaml
 input_boolean: !include includes/input_boolean.yaml
+input_datetime: !include includes/input_datetime.yaml
 input_select: !include includes/input_select.yaml
 logger: !include includes/logger.yaml
 media_player: !include includes/media_players.yaml
 notify: !include includes/notify.yaml
 scene: !include includes/scenes.yaml
-#switch: !include includes/switch.yaml
+switch: !include includes/switch.yaml
 weblink: !include includes/weblink.yaml
 
 # Merge List
 
-automation: !include_dir_merge_list includes/automation 
+automation: !include_dir_merge_list includes/automation
 sensor: !include_dir_merge_list includes/sensors
 shell_command: !include_dir_merge_named includes/shell_command
 zone: !include_dir_merge_list includes/zone
@@ -133,4 +182,3 @@ zone: !include_dir_merge_list includes/zone
 
 group: !include_dir_merge_named includes/group
 script: !include_dir_merge_named includes/scripts
-

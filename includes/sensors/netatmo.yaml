@@ -24,10 +24,10 @@
       - rf_status
   
     Anemometer:
-      - WindAngle
-      - WindStrength
-      - GustAngle
-      - GustStrength
+      - windangle
+      - windstrength
+      - gustangle
+      - guststrength
       - battery_vp
       - rf_status
   

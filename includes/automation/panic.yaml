@@ -8,7 +8,7 @@
   trigger:
     platform: state
     entity_id: input_boolean.panic 
-    state: 'on'
+    to: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: 
@@ -25,7 +25,7 @@
   trigger:
     platform: state
     entity_id: input_boolean.panic 
-    state: 'off'
+    to: 'off'
   action:
     service: homeassistant.turn_off
     entity_id: 

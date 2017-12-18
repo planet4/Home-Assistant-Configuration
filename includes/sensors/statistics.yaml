@@ -5,14 +5,24 @@
 ############################################################
 
 - platform: statistics
-  entity_id: sensor.mainstairslower_temperature_12_1
+  entity_id: sensor.mainstairslower_temperature
   name: 'Living_Room_Temp_Statistics'
 
 - platform: statistics
-  entity_id: sensor.kitchenmotionsensor_temperature_2_1
+  entity_id: sensor.kitchenmotionsensor_temperature
   name: 'Kitchen_Temp_Statistics'
 
 - platform: statistics
-  entity_id: sensor.energy_monitor
-  name: 'Energy_Monitor_Statistics'
+  entity_id: sensor.total_power_usage
+  name: 'Total Electricity Usage'
+  sampling_size: 43200
+
+- platform: statistics
+  entity_id: sensor.no_5_power_usage
+  name: 'No. 5 Electricity Usage'
+  sampling_size: 43200
+
+- platform: statistics
+  entity_id: sensor.no_6_power_usage
+  name: 'No. 6 Electricity Usage'
   sampling_size: 43200

@@ -5,9 +5,6 @@ entities:
 - name: Wi-Fi Controller
   url: !secret weblink_wifi_controller
 
-- name: Dashboard
-  url: !secret weblink_dashboard
-
 - name: CCTV
   url: !secret weblink_cctv1
 
@@ -16,4 +13,3 @@ entities:
 
 - name: Media Server Plex
   url: !secret weblink_plex_server
-

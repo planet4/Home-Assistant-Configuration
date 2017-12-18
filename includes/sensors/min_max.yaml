@@ -5,37 +5,40 @@
 ############################################################
 - platform: min_max 
   entity_ids: 
-    - sensor.bathroommotionsensor_temperature_22_1
-    - sensor.bedroom
-    - sensor.hallmotionsensor_temperature_9_1
-    - sensor.kitchenmotionsensor_temperature_2_1
-    - sensor.mainstairslower_temperature_12_1
-    - sensor.mainstairsupper_temperature_11_1
-    - sensor.porchmotionsensor_temperature_5_1
-  name: 'House_Temperature'
+    - sensor.porchmotionsensor_temperature 
+    - sensor.hallmotionsensor_temperature
+    - sensor.kitchenmotionsensor_temperature
+    - sensor.mainstairslower_temperature
+    - sensor.mainstairsupper_temperature
+    - sensor.bedroom_temperature
+    - sensor.dining_room_thermostat_temperature
+    - sensor.attic_temperature
+  name: 'House_Minimum_Temperature'
   type: min
 
 - platform: min_max 
   entity_ids: 
-    - sensor.bathroommotionsensor_temperature_22_1
-    - sensor.bedroom
-    - sensor.hallmotionsensor_temperature_9_1
-    - sensor.kitchenmotionsensor_temperature_2_1
-    - sensor.mainstairslower_temperature_12_1
-    - sensor.mainstairsupper_temperature_11_1
-    - sensor.porchmotionsensor_temperature_5_1
-  name: 'House_Temperature'
+    - sensor.porchmotionsensor_temperature 
+    - sensor.hallmotionsensor_temperature
+    - sensor.kitchenmotionsensor_temperature
+    - sensor.mainstairslower_temperature
+    - sensor.mainstairsupper_temperature
+    - sensor.bedroom_temperature
+    - sensor.dining_room_thermostat_temperature
+    - sensor.attic_temperature
+  name: 'House_Maximum_Temperature'
   type: max
 
 - platform: min_max 
   entity_ids: 
-    - sensor.bathroommotionsensor_temperature_22_1
-    - sensor.bedroom
-    - sensor.hallmotionsensor_temperature_9_1
-    - sensor.kitchenmotionsensor_temperature_2_1
-    - sensor.mainstairslower_temperature_12_1
-    - sensor.mainstairsupper_temperature_11_1
-    - sensor.porchmotionsensor_temperature_5_1
-  name: 'House_Temperature'
+    - sensor.porchmotionsensor_temperature 
+    - sensor.hallmotionsensor_temperature
+    - sensor.kitchenmotionsensor_temperature
+    - sensor.mainstairslower_temperature
+    - sensor.mainstairsupper_temperature
+    - sensor.bedroom_temperature
+    - sensor.dining_room_thermostat_temperature
+    - sensor.attic_temperature
+  name: 'House_Mean_Temperature'
   type: mean
 

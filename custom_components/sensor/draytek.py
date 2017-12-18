@@ -168,9 +168,9 @@ class DraytekSensor(Entity):
             elif self.type == 'US_Path_Mode':
                 self._state = self.details.group(8)
             elif self.type == 'DS_Interleave_Depth':
-                self._state = float(self.details.group(9))
+                self._state = int(self.details.group(9))
             elif self.type == 'US_Interleave_Depth':
-                self._state = float(self.details.group(10))
+                self._state = int(self.details.group(10))
             elif self.type == 'NE_Current_Attenuation':
                 self._state = float(self.details.group(11))
             elif self.type == 'Cur_SNR_Margin':
@@ -180,21 +180,21 @@ class DraytekSensor(Entity):
             elif self.type == 'US_Actual_PSD':
                 self._state = float(self.details.group(14).replace(" ", ""))
             elif self.type == 'NE_Rcvd_Cells':
-                self._state = float(self.details.group(15))
+                self._state = int(self.details.group(15))
             elif self.type == 'NE_Xmitted_Cells':
-                self._state = float(self.details.group(16))
+                self._state = int(self.details.group(16))
             elif self.type == 'NE_CRC_Count':
-                self._state = float(self.details.group(17))
+                self._state = int(self.details.group(17))
             elif self.type == 'FE_CRC_Count':
-                self._state = float(self.details.group(18))
+                self._state = int(self.details.group(18))
             elif self.type == 'NE_ES_Count':
-                self._state = float(self.details.group(19))
+                self._state = int(self.details.group(19))
             elif self.type == 'FE_ES_Count':
-                self._state = float(self.details.group(20))
+                self._state = int(self.details.group(20))
             elif self.type == 'Xdsl_Reset_Times':
-                self._state = float(self.details.group(21))
+                self._state = int(self.details.group(21))
             elif self.type == 'Xdsl_Link_Times':
-                self._state = float(self.details.group(22))
+                self._state = int(self.details.group(22))
             elif self.type == 'ITU_Version_0':
                 self._state = self.details.group(23)
             elif self.type == 'ITU_Version_1':
@@ -246,4 +246,3 @@ class DraytekData(object):
         except ConnectionRefusedError:
             _LOGGER.error('Draytek is not available at %s:%s', self.host, self.port)
             self.data = None
-

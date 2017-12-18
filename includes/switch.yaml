@@ -1,0 +1,7 @@
+- platform: mqtt
+  name: "Nixie Clock"
+  state_topic: "house/nixieclock"
+  command_topic: "house/nixieclock"
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true     

@@ -26,8 +26,8 @@
 - alias: "Turn ON Front Lights when Front Door is OPENED" 
   trigger:
     platform: state
-    entity_id: binary_sensor.frontdoorswitch_sensor_3_0
-    state: 'on'
+    entity_id: binary_sensor.frontdoorswitch_sensor
+    to: 'on'
   condition:
     condition: state
     entity_id: 'sensor.light_sensor'
@@ -35,3 +35,28 @@
   action:
     service: homeassistant.turn_on
     entity_id: script.front_floodlights_motion_timer
+
+############################################################
+#
+# Home Assistant Courtyard Lights when someone arrives HOME
+#
+############################################################
+
+- alias: Turn ON front lights when zone is entered
+  trigger:
+    - platform: zone
+      entity_id: device_tracker.graemes_iphone
+      zone: zone.home
+      event: enter
+    - platform: zone
+      entity_id: device_tracker.aileens_iphone
+      zone: zone.home
+      event: enter
+  condition:
+    condition: state
+    entity_id: 'sensor.light_sensor'
+    state: 'Night'
+  action:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: script.front_floodlights_motion_timer

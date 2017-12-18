@@ -20,61 +20,69 @@ Rooms:
     - group.house
     - group.stairs
     - group.guest_bedroom
+    - group.study
+    - group.attic
 
-Living Room Scenes:
-  - scene.concentrate
-  - scene.energize
-  - scene.reading
-  - scene.relax
-  - scene.amsterdam
 
 Living Room:
   control: hidden
   entities:
+    - sensor.harmony
+    - input_select.harmony
+    - switch.television 
     - light.living_room_go_1
     - light.living_room_lamp_1
     - group.living_room_lights 
-    - sensor.mainstairslower_temperature_12_1
+    - sensor.mainstairslower_temperature
     - sensor.living_room_statistics_mean
     - input_boolean.cinema_mode
-
+    - switch.nixieclock_switch
+  
 Living Room Lights:
   - light.living_room_front_1
   - light.living_room_front_2
 
+Living Room Scenes: 
+  - scene.concentrate
+  - scene.energize
+  - scene.reading
+  - scene.relax
+
+
 Kitchen:
   - sensor.template_front_door
-  - sensor.kitchenmotionsensor_temperature_2_1
+  - sensor.kitchenmotionsensor_temperature
   - light.kitchen_lightstrip_1
-  - sensor.kitchen_statistics_mean
 
 Bathroom:
-  - sensor.bathroommotionsensor_temperature_22_1
-  - light.bathroom_1
+  - sensor.bathroommotionsensor_temperature
+  - light.bathroom
 
 Bedroom:
-  - sensor.bedroom
+  - climate.bedroom_radiator_thermostat
+  - sensor.bedroom_temperature
   - sensor.bedroom_humidity
-  - light.bedroom_1
+  - light.bedroom
+  - input_datetime.bedroom_alarm
 
 Dining Room:
   - sensor.dining_room_thermostat_humidity
   - sensor.dining_room_thermostat_operation_mode
   - sensor.dining_room_thermostat_target
   - sensor.dining_room_thermostat_temperature
-  - light.dining_room_1
+  - light.dining_room
 
 Downstairs Hall:
-  - sensor.hallmotionsensor_temperature_9_1
-  - light.hall_1
+  - sensor.hallmotionsensor_temperature
+  - light.hall
 
 Upstairs Hall:
-  - sensor.mainstairsupper_temperature_11_1
-  - light.upstairs_hall_1
+  - sensor.mainstairsupper_temperature
+  - light.upstairs_hall
 
 Porch:
-  - sensor.porchmotionsensor_temperature_5_1
-  - light.porch_1
+  - sensor.porchmotionsensor_temperature
+  - light.porch
   - sensor.template_back_door
 
 House:
@@ -83,8 +91,22 @@ House:
   - sensor.house_temperature_max
 
 Guest Bedroom:
-  - light.guest_bedroom_1
-  - input_boolean.guest_mode
+  control: hidden
+  entities:
+    - climate.guest_bedroom_radiator_thermostat
+    - light.guest_bedroom
+    - input_boolean.guest_mode
 
 Stairs:
-  - light.stairs_1
+  - light.stairs
+
+Study:
+  control: hidden
+  entities:
+    - climate.study_radiator_thermostat
+    - light.study
+    - switch.studylight_switch
+
+Attic:
+  - sensor.attic_temperature
+

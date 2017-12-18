@@ -17,3 +17,4 @@ Travel:
   - sensor.aileen_to_work
   - sensor.aileen_work_to_home
   - sensor.aileen_to_home
+  - input_boolean.travel_alerts

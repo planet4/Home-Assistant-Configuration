@@ -4,4 +4,4 @@
 #
 ############################################################
 
-backup_config: '/config/bin/backup_config.sh'
+backup_config: '/home/homeassistant/.homeassistant/bin/backup_config.sh'

@@ -5,7 +5,7 @@
 ############################################################
 
 - platform: command_line
-  command: "/config/bin/linesOfConfiguration"
+  command: "/home/homeassistant/.homeassistant/bin/linesOfConfiguration"
   name: "Lines of Configuration" 
   unit_of_measurement: "lines"
 

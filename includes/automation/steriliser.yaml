@@ -7,7 +7,7 @@
 - alias: NOTIFY All when Steriliser Power is HIGH
   trigger: 
     platform: numeric_state
-    entity_id: sensor.steriliserpower_power_4_8
+    entity_id: sensor.steriliserpower_power
     above: 30
   action:
     - service: notify.notify_all
@@ -24,9 +24,28 @@
 - alias: NOTIFY All when Steriliser Power is LOW
   trigger: 
     platform: numeric_state
-    entity_id: sensor.steriliserpower_power_4_8
+    entity_id: sensor.steriliserpower_power
     below: 19
   action:
     - service: notify.notify_all
       data_template:
         message: 'WARNING: STERLISER POWER LOW'
+
+############################################################
+#
+# Send Notification when Steriliser has not been updated
+#
+############################################################
+- alias: NOTIFY All when Steriliser Power has not been updated
+  trigger: 
+    platform: time
+    minutes: '/60'
+    seconds: 00
+  condition:
+    condition: template
+    value_template: "{{ (as_timestamp(now()) | int) -as_timestamp(strptime(states.zwave.steriliserpower.attributes.receivedTS | string | truncate(19,True,'',0),'%Y-%m-%d %H:%M:%S:%f')) > 1800 }}"
+  action:
+    - service: notify.notify_all
+      data_template:
+        message: 'WARNING: STERLISER NOT UPDATING'
+

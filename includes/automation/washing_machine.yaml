@@ -13,6 +13,7 @@
     for:
       minutes: 3
   action:
-    - service: notify.as_sms
+    - service: notify.ios_aileens_iphone
       data_template:
-        message: 'Washing Machine Finished'
+        title: 'Washing Machine'
+        message: 'Finished'

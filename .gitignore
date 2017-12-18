@@ -1,24 +1,46 @@
-# Files
-*.conf
-*.db
-*.db-journal
-*.log
-*.noload
-*.sqlite
-*.txt
+# Wildcards
+
+*.pid
 *.xml
+*.csr
+*.crt
+*.key
+*.conf
+*.db-wal
+*.db-shm
+*.log
+*.db-journal
+*.db
+*.cfg
+*.wav
+*.mp3
+home-assistant.log.*
+
+# Hidden Files
+
+.uuid
+.gitignore
+.gitattributes
 .HA_VERSION
-known_devices.yaml
-google_calendars.yaml
-secrets.yaml
 .google.token
+.ios.conf
+
+# Normal Files
+
+broadband.json
+google_calendars.yaml
+known_devices.yaml
+secrets.yaml
+zwave_device_config.yaml
 
 # Directories
+
+lib
 icloud
 deps
+tts
 www
 
 # Python Caches
 __pycache__
 *.pyc
-

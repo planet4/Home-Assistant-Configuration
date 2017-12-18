@@ -12,6 +12,8 @@ outside:
     - group.outside_lights
     - group.utility_room
     - group.workshop
+    - group.garden
+    - group.water_steriliser
 
 Weather:
   - sun.sun
@@ -28,40 +30,47 @@ Weather:
   - sensor.netatmo_anemometer_strength
   - sensor.netatmo_anemometer_gust_angle
   - sensor.netatmo_anemometer_gust_strength
-  - sensor.lightsensor_luminance_14_3
+  - sensor.lightsensor_luminance
 
 Summer House:
   - climate.summer_house
   - sensor.netatmo_inside_humidity
-  - switch.summerhouselights_switch_16_0
-  - sensor.summerhousedoor_luminance_13_3
+  - switch.summerhouselights_switch
+  - sensor.summerhousedoor_luminance
   - sensor.template_summer_house_door
-  - switch.summerhousepower_switch_15_0
+  - switch.summerhousepower_switch
   - sensor.netatmo_inside_co2
   - sensor.netatmo_inside_noise
   - sensor.netatmo_inside_wifi
 
 Outside Lights:
   - group.front_lights
-  - group.court_yard
-  - switch.backfloodlight_switch_8_0
+  - group.courtyard_lights
+  - switch.light_backdoor_2
 
 Front Lights:
-  - switch.frontfloodlights_switch_10_0_2 
-  - switch.frontfloodlights_switch_10_0 
-
-Court Yard:
-  - light.workshoplight_level_6_0
-  - switch.summerhouselights_switch_16_0_2
-  - switch.backfloodlight_switch_8_0_2
-  - switch.utilityroomlights_switch_24_0_2
+  - switch.frontfloodlights_switch_2
+  - switch.frontfloodlights_switch
 
 Utility Room:
-  - sensor.utility_room
-  - sensor.washingmachinepower_power_17_8
+  - sensor.utility_room_temperature
+  - sensor.washingmachinepower_power
   - sensor.template_utility_room_door
-  - switch.utilityroomlights_switch_24_0
+  - switch.utility_room_lights
 
 Workshop:
   - sensor.template_workshop_door
-   
+  - switch.workshop_lights
+
+Garden:
+  - sensor.soil_temperature_upper
+  - sensor.soil_temperature_lower
+  - sensor.soil_temperature_battery
+
+Water Steriliser:
+  - sensor.water_steriliser_temperature
+  - sensor.steriliserpower_current
+  - sensor.steriliserpower_energy
+  - sensor.steriliserpower_power
+  - sensor.steriliserpower_power_factor
+  - sensor.steriliserpower_voltage

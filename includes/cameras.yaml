@@ -4,16 +4,29 @@
 #
 ############################################################
 
-- platform: mjpeg
-  mjpeg_url: !secret camera_mjpeg_url
+#- platform: mjpeg
+#  mjpeg_url: !secret camera_mjpeg_url
+#  name: CCTV Front
+#
+#
+- platform: ffmpeg
+  input: !secret camera1_url
   name: CCTV Front
+  extra_arguments: '-rtsp_transport udp -an -pred 1 -q:v 2'
+#  extra_arguments: '-rtsp_transport tcp -preset ultrafast -vcodec libx264 -b 900k -tune zerolatency -an'
 
-#- platform: generic
-#  name: People
-#  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.iphone.attributes.latitude }},{{ states.device_tracker.iphone.attributes.longitude }}&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:G%7C{{ states.device_tracker.iphone.attributes.latitude }},{{ states.device_tracker.iphone.attributes.longitude }}&markers=color:blue%7Clabel:A%7C{{ states.device_tracker.aileensiphone.attributes.latitude }},{{ states.device_tracker.aileensiphone.attributes.longitude }}
-#  limit_refetch_to_url_change: true
+- platform: ffmpeg
+  input: !secret camera2_url
+  name: Attic
+  extra_arguments: '-rtsp_transport udp -an -pred 1 -q:v 2'
 
-#- platform: generic
-#  name: Aileen
-#  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.aileensiphone.attributes.latitude }},{{ states.device_tracker.aileensiphone.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:A%7C{{ states.device_tracker.aileensiphone.attributes.latitude }},{{ states.device_tracker.aileensiphone.attributes.longitude }}
-#  limit_refetch_to_url_change: true
+#- platform: mjpeg
+#  mjpeg_url: !secret camera1_url
+#  name: Garden
+#- platform: mjpeg 
+#  mjpeg_url: !secret camera2_url
+#  name: Courtyard
+#
+- platform: generic
+  still_image_url: https://api.sat24.com/animated/GB/visual/3/GMT%20Standard%20Time/6849114
+  name: Weather Map

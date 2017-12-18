@@ -7,6 +7,7 @@
 media:
   view: yes
   entities:
+    - media_player.plex_for_lg_webos_043050 
     - media_player.rasplex
     - media_player.living_room
     - media_player.living_room_2
@@ -15,6 +16,6 @@ media:
     - media_player.bedroom
     - media_player.kitchen
     - media_player.kitchen_2
-    - media_player.samsung_tv_remote
+    - media_player.tv_ue32h5500
     - media_player.home
   icon: mdi:play-pause

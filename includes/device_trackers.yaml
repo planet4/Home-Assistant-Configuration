@@ -26,11 +26,12 @@
 
 - platform: unifi
   host: !secret unifi_host
-  port: !secret unifi_port 
+  port: !secret unifi_port
   username: !secret unifi_username
   password: !secret unifi_password
-  site_id: !secret unifi_site_id 
+  site_id: !secret unifi_site_id
+  verify_ssl: True
 
 - platform: nmap_tracker
-  hosts: 192.168.2.0/24
+  hosts: !secret nmap_hosts
   home_interval: 10

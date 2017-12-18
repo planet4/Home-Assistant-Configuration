@@ -34,3 +34,15 @@ radio_player:
     - "None"
   initial: "None"
   icon: mdi:airplay
+
+harmony:
+  name: Harmony Control
+  options:
+   - Select a Activity
+   - Power Off
+   - Watch TV 
+   - Watch Chromecast 
+   - Listen to Music
+   - Chromecast Audio 
+  icon: mdi:monitor
+

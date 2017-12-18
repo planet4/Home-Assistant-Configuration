@@ -8,7 +8,7 @@
   trigger:
     - platform: state
       entity_id: sensor.template_back_door
-      state: 'open'
+      to: 'open'
   condition:
     condition: or
     conditions:
@@ -19,7 +19,7 @@
         entity_id: 'input_boolean.night_mode'
         state: 'on'
   action:
-    - service: notify.notify_all
+    - service: notify.ios_all
       data_template:
         message: 'ALARM: Back Door Opened'
 
@@ -27,7 +27,7 @@
   trigger:
     - platform: state
       entity_id: sensor.template_front_door
-      state: 'open'
+      to: 'open'
   condition:
     condition: or
     conditions:
@@ -38,7 +38,7 @@
         entity_id: 'input_boolean.night_mode'
         state: 'on'
   action:
-    - service: notify.notify_all
+    - service: notify.ios_all
       data_template:
         message: 'ALARM: Front Door Opened'
 
@@ -46,7 +46,7 @@
   trigger:
     - platform: state
       entity_id: sensor.template_summer_house_door 
-      state: 'open'
+      to: 'open'
   condition:
     condition: or
     conditions:
@@ -57,7 +57,7 @@
         entity_id: 'input_boolean.night_mode'
         state: 'on'
   action:
-    - service: notify.notify_all
+    - service: notify.ios_all
       data_template:
         message: 'ALARM: Summer House Door Opened'
 
@@ -65,7 +65,7 @@
   trigger:
     - platform: state 
       entity_id: sensor.template_utility_room_door
-      state: 'open'
+      to: 'open'
   condition:
     condition: or
     conditions:
@@ -76,7 +76,7 @@
         entity_id: 'input_boolean.night_mode'
         state: 'on'
   action:
-    - service: notify.notify_all
+    - service: notify.ios_all
       data_template:
         message: 'ALARM: Utility Room Door Opened'
 
@@ -84,7 +84,7 @@
   trigger:
     - platform: state
       entity_id: sensor.template_workshop_door
-      state: 'open'
+      to: 'open'
   condition:
     condition: or
     conditions:
@@ -95,6 +95,6 @@
         entity_id: 'input_boolean.night_mode'
         state: 'on'
   action:
-    - service: notify.notify_all
+    - service: notify.ios_all
       data_template:
         message: 'ALARM: Workshop Door Opened'
