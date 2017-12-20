@@ -15,9 +15,6 @@ homeassistant:
     light.bathroom_1:
       friendly_name: 'Light'
       icon: mdi:ceiling-light
-    light.kitchen:
-      friendly_name: 'Light'
-      icon: mdi:ceiling-light
     light.upstairs_hall:
       friendly_name: 'Light'
       icon: mdi:ceiling-light
@@ -29,8 +26,6 @@ timer:
     duration: '00:03:00'
   bathroom_light:
     duration: '00:10:00'
-  kitchen_light:
-    duration: '00:03:00'
   upstairs_hall_light:
     duration: '00:01:00'
 
@@ -107,39 +102,6 @@ automation:
     action:
       - service: light.turn_off
         entity_id: light.hall
-
-############################################################
-#
-# Home Assistant Kitchen Light Strip Motion Automation
-#
-############################################################
-
-  - alias: Kitchen Light Strip ON when Motion is ACTIVE
-    trigger:
-      platform: state
-      entity_id: sensor.kitchen_motion_sensor
-      to: 'Motion'
-    condition:
-      - condition: state
-        entity_id: sensor.light_sensor
-        state: 'Night'
-    action:
-      - service: timer.start
-        entity_id: timer.kitchen_light
-      - service: light.turn_on
-        entity_id: light.kitchen
-#        data_template:
-#          brightness: "{{ states('sensor.time_brightness')|int }}"
-
-  - alias: "Turn off Kitchen Light Strip at end of timer"
-    trigger:
-      platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.kitchen_light
-    action:
-      - service: light.turn_off
-        entity_id: light.kitchen
 
 ############################################################
 #

@@ -1,0 +1,310 @@
+############################################################
+#
+# ZWave Device Battery states
+#
+############################################################
+sensor:
+  - platform: template
+    sensors:
+      bathroom_motion_sensor_battery:
+        value_template: '{{ states.zwave.bathroommotionsensor.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.bathroommotionsensor
+        friendly_name: "Bathroom"
+        icon_template: >-
+          {% if not is_state_attr('zwave.bathroommotionsensor', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.bathroommotionsensor.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      kitchen_motion_sensor_battery:
+        value_template: '{{ states.zwave.kitchenmotionsensor.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.kitchenmotionsensor
+        friendly_name: "Kitchen"
+        icon_template: >-
+          {% if not is_state_attr('zwave.kitchenmotionsensor', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.kitchenmotionsensor.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      hall_motion_sensor_battery:
+        value_template: '{{ states.zwave.hallmotionsensor.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.hallmotionsensor
+        friendly_name: "Hall"
+        icon_template: >-
+          {% if not is_state_attr('zwave.hallmotionsensor', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.hallmotionsensor.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      porch_motion_sensor_battery:
+        value_template: '{{ states.zwave.porchmotionsensor.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.porchmotionsensor
+        friendly_name: "Porch"
+        icon_template: >-
+          {% if not is_state_attr('zwave.porchmotionsensor', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.porchmotionsensor.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      lowerstairs_motion_sensor_battery:
+        value_template: '{{ states.zwave.mainstairslower.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.mainstairslower
+        friendly_name: "Lower Stairs"
+        icon_template: >-
+          {% if not is_state_attr('zwave.mainstairslower', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.mainstairslower.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      upperstairs_motion_sensor_battery:
+        value_template: '{{ states.zwave.mainstairsupper.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.mainstairsupper
+        friendly_name: "Upper Stairs"
+        icon_template: >-
+          {% if not is_state_attr('zwave.mainstairsupper', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.mainstairsupper.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      summerhousedoor_sensor_battery:
+        value_template: '{{ states.zwave.summerhousedoor.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.summerhousedoor
+        friendly_name: "Summer House Door"
+        icon_template: >-
+          {% if not is_state_attr('zwave.summerhousedoor', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.summerhousedoor.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      backdoor_sensor_battery:
+        value_template: '{{ states.zwave.backdoorswitch.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.backdoorswitch
+        friendly_name: "Back Door"
+        icon_template: >-
+          {% if not is_state_attr('zwave.backdoorswitch', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.backdoorswitch.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      frontdoor_sensor_battery:
+        value_template: '{{ states.zwave.frontdoorswitch.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.frontdoorswitch
+        friendly_name: "Front Door"
+        icon_template: >-
+          {% if not is_state_attr('zwave.frontdoorswitch', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.frontdoorswitch.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      utilityroomdoor_sensor_battery:
+        value_template: '{{ states.zwave.utilityroomswitch.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.utilityroomswitch
+        friendly_name: "Utility Room Door"
+        icon_template: >-
+          {% if not is_state_attr('zwave.utilityroomswitch', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.utilityroomswitch.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      workshop_sensor_battery:
+        value_template: '{{ states.zwave.workshopswitch.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.workshopswitch
+        friendly_name: "Workshop Door"
+        icon_template: >-
+          {% if not is_state_attr('zwave.workshopswitch', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.workshopswitch.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      light_sensor_battery:
+        value_template: '{{ states.zwave.lightsensor.attributes.battery_level }}'
+        unit_of_measurement: '%'
+        entity_id: zwave.lightsensor
+        friendly_name: "Light Sensor"
+        icon_template: >-
+          {% if not is_state_attr('zwave.lightsensor', 'battery_level', 'unknown') %}
+            {% set battery_level = states.zwave.lightsensor.attributes.battery_level|int (-1)%}
+            {% set battery_round = (battery_level|int / 10)|int * 10 %}
+            {% if battery_level == -1 %}
+              mdi:battery-unknown
+            {% else %}
+              {% if battery_round >= 100 %}
+                mdi:battery
+              {% elif battery_round > 0 %}
+                mdi:battery-{{ battery_round }}
+              {% else %}
+                mdi:battery-alert
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+automation:
+  - alias: "Low Battery Notification"
+    trigger:
+      - platform: template
+        value_template: >
+          {% for zwave in states.zwave if zwave.attributes.battery_level %}
+            {%- if zwave.attributes.battery_level | int < 40 -%}
+              {{true}}
+            {%- endif -%}
+          {%- endfor -%}
+    action:
+      - service: persistent_notification.create
+        data_template:
+          message: >
+            {{ trigger.to_state.attributes.friendly_name }} needs new batteries.
+          title: "Z-Wave"

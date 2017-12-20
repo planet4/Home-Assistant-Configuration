@@ -225,6 +225,9 @@ switch.frontfloodlights_switch_2:
 switch.nixieclock_switch:
   icon: mdi:clock
   friendly_name: Nixie Clock
+switch.livingroomrepeater_switch:
+  friendly_name: Christmas Tree
+  icon: mdi:ornament
 switch.studylight_switch:
   friendly_name: Lamp
   icon: mdi:lamp
@@ -271,12 +274,12 @@ sensor.house_maximum_temperature:
 sensor.living_room_nest_protect_battery_health:
   icon: mdi:battery
 sensor.living_room_nest_protect_co_status:
-  entity_picture: mdi:alarm-light
+  icon: mdi:nest-protect
 sensor.living_room_nest_protect_smoke_status:
-  entity_picture: mdi:alarm-light
+  icon: mdi:nest-protect
 sensor.upstairs_nest_protect_battery_health:
   icon: mdi:battery
 sensor.upstairs_nest_protect_co_status:
-  entity_picture: mdi:alarm-light
+  icon: mdi:nest-protect
 sensor.upstairs_nest_protect_smoke_status:
-  entity_picture: mdi:alarm-light
+  icon: mdi:nest-protect

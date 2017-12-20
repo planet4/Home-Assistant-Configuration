@@ -16,8 +16,8 @@ binary_sensor:
     state_topic: "house/doorbellreceiver/1/stat"
     name: "PIR Front"
     qos: 1
-    payload_on: "3on"
-    payload_off: "3off"
+    payload_on: "5on"
+    payload_off: "5off"
     device_class: motion
     retain: false
 
@@ -34,8 +34,8 @@ binary_sensor:
     state_topic: "house/doorbellreceiver/1/stat"
     name: "PIR Summer House"
     qos: 1
-    payload_on: "5on"
-    payload_off: "5off"
+    payload_on: "3on"
+    payload_off: "3off"
     device_class: motion
     retain: false
 
@@ -118,7 +118,7 @@ automation:
       from: 'off'
     action:
       - service: notify.livingroomtv
-        data_template:
+        data:
           title: 'Alert'
           message: 'There is motion in the Driveway'
 
@@ -150,7 +150,7 @@ automation:
       from: 'off'
     action:
       - service: notify.livingroomtv
-        data_template:
+        data:
           title: 'Alert'
           message: 'There is motion at the front of the house'
 
@@ -182,7 +182,7 @@ automation:
       from: 'off'
     action:
       - service: notify.livingroomtv
-        data_template:
+        data:
           title: 'Alert'
           message: 'There is motion at the front of the summer house'
 
@@ -213,15 +213,15 @@ automation:
       entity_id: binary_sensor.doorbell_door
       from: 'off'
     action:
-      - service: timer.start
-        entity_id: timer.go_timer
-      - service: light.turn_on
-        entity_id: light.living_room_go_1
-        data:
-          color_name: blue
-          brightness: 255
+#      - service: timer.start
+#        entity_id: timer.go_timer
+#      - service: light.turn_on
+#        entity_id: light.living_room_go_1
+#        data:
+#          color_name: blue
+#          brightness: 255
       - service: notify.livingroomtv
-        data_template:
+        data:
           title: 'Alert'
           message: 'There is somebody at the door'
 
@@ -252,13 +252,13 @@ automation:
       entity_id: binary_sensor.doorbell_gate
       from: 'off'
     action:
-      - service: light.turn_on
-        entity_id: light.living_room_go_1
-        data:
-          color_name: red
-          brightness: 255
-      - service: timer.start
-        entity_id: timer.go_timer
+#      - service: light.turn_on
+#        entity_id: light.living_room_go_1
+#        data:
+#          color_name: red
+#          brightness: 255
+#      - service: timer.start
+#        entity_id: timer.go_timer
       - service: notify.livingroomtv
         data_template:
           title: 'Alert'
@@ -274,8 +274,6 @@ automation:
       - service: light.turn_off
         entity_id: light.living_room_go_1
 
-timer:
-  go_timer:
-    duration: '00:00:30'
-
-
+#timer:
+#  go_timer:
+#    duration: '00:00:30'

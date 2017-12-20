@@ -48,12 +48,6 @@ Living Room Scenes:
   - scene.reading
   - scene.relax
 
-
-Kitchen:
-  - sensor.template_front_door
-  - sensor.kitchenmotionsensor_temperature
-  - light.kitchen_lightstrip_1
-
 Bathroom:
   - sensor.bathroommotionsensor_temperature
   - light.bathroom

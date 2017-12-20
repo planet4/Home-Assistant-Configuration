@@ -59,7 +59,7 @@
       transition: 30
       brightness: 96
       xy_color: [ 0.5529, 0.4107 ]
-    light.kitchen_lightstrip_1:
+    light.kitchen_go:
       state: off
     light.upstairs_hall:
       state: off

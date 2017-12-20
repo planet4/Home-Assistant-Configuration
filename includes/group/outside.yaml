@@ -54,9 +54,9 @@ Front Lights:
 
 Utility Room:
   - sensor.utility_room_temperature
-  - sensor.washingmachinepower_power
   - sensor.template_utility_room_door
   - switch.utility_room_lights
+  - group.washing_machine
 
 Workshop:
   - sensor.template_workshop_door

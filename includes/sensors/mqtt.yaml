@@ -109,3 +109,8 @@
   state_topic: "hass/storage/light/daylight"
   name: "Daylight"
   qos: 0
+
+- platform: mqtt
+  state_topic: "hass/storage/light/daylight_seconds"
+  name: "Daylight Seconds"
+  qos: 0

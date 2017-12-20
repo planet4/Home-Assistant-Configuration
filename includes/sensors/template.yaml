@@ -120,23 +120,6 @@
 
 ############################################################
 #
-# Show Washing Machine as On or Off depending on Power Usage
-#
-############################################################
-
-    washing_machine:
-      friendly_name: 'Washing Machine'
-      value_template: >-
-        {%- if states("sensor.washingmachinepower_power") | float < 3.5 -%}
-          off
-        {%- elif states("sensor.washingmachinepower_power") | float >= 3.5 -%}
-          on
-        {%- else -%}
-          unknown
-        {%- endif -%}
-
-############################################################
-#
 # Motion Sensor Helpers
 #
 ############################################################

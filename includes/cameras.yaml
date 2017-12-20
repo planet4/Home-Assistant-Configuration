@@ -5,8 +5,8 @@
 ############################################################
 
 #- platform: mjpeg
-#  mjpeg_url: !secret camera_mjpeg_url
-#  name: CCTV Front
+#  mjpeg_url: !secret camera1_url
+#  name: Attic
 #
 #
 - platform: ffmpeg

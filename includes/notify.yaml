@@ -38,7 +38,7 @@
     - service: twilio_sms
       data:
         target: !secret graeme_twilio
-  
+
 - platform: group
   name: notify_aileen
   services:
@@ -47,7 +47,7 @@
     - service: ios_aileens_iphone
 
 - platform: group
-  name: notify_graeme 
+  name: notify_graeme
   services:
     - service: gs_sms
     - service: gs_email
@@ -71,7 +71,6 @@
     - service: notify_aileen
     - service: notify_graeme
     - service: html5
-    - service: rasplex
 
 - platform: group
   name: notify_all
@@ -79,6 +78,5 @@
     - service: notify_aileen
     - service: notify_graeme
     - service: html5
-    - service: rasplex
 
 - platform: ios

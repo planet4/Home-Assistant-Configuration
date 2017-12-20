@@ -151,7 +151,7 @@ maxcube:
 # Single Files
 
 binary_sensor: !include includes/binary_sensors.yaml
-camera: !include includes/cameras.yaml
+#camera: !include includes/cameras.yaml
 climate: !include includes/climate.yaml
 device_tracker: !include includes/device_trackers.yaml
 history_graph: !include includes/history_graph.yaml
