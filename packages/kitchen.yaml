@@ -1,0 +1,49 @@
+homeassistant:
+  customize:
+    light.kitchen:
+      friendly_name: 'Light'
+      icon: mdi:ceiling-light
+
+timer:
+  kitchen_light:
+    duration: '00:03:00'
+
+group:
+  Kitchen:
+    - sensor.template_front_door
+    - sensor.kitchenmotionsensor_temperature
+    - light.kitchen_go_1
+
+automation:
+############################################################
+#
+# Home Assistant Kitchen Go Motion Automation
+#
+############################################################
+
+  - alias: "Turn on Kitchen Light on Motion"
+    trigger:
+      platform: state
+      entity_id: sensor.kitchen_motion_sensor
+      to: 'Motion'
+    condition:
+      - condition: state
+        entity_id: sensor.light_sensor
+        state: 'Night'
+    action:
+      - service: timer.start
+        entity_id: timer.kitchen_light
+      - service: light.turn_on
+        entity_id: light.kitchen
+#        data_template:
+#          brightness: "{{ states('sensor.time_brightness')|int }}"
+
+  - alias: "Turn off Kitchen Light at end of timer"
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.kitchen_light
+    action:
+      - service: light.turn_off
+        entity_id: light.kitchen

@@ -1,0 +1,90 @@
+############################################################
+#
+# Notify Aileen when Washing Machine is Finished
+#
+############################################################
+
+homeassistant:
+  customize:
+    sensor.washing_machine:
+      friendly_name: "Washing Machine"
+      icon: mdi:washing-machine
+    sensor.washingmachinepower_current:
+      friendly_name: "Current"
+      icon: mdi:power-plug
+    sensor.washingmachinepower_energy:
+      friendly_name: "Energy Usage"
+      icon: mdi:power-plug
+    sensor.washingmachinepower_power:
+      friendly_name: "Power Consumption"
+      icon: mdi:power-plug
+    sensor.washingmachinepower_voltage:
+      friendly_name: "Voltage"
+      icon: mdi:power-plug
+
+group:
+  washing_machine:
+    control: hidden
+    name: Washing Machine
+    entities:
+      - sensor.washing_machine
+      - sensor.washingmachinepower_voltage
+      - sensor.washingmachinepower_current
+      - sensor.washingmachinepower_power
+      - sensor.washingmachinepower_energy
+
+############################################################
+#
+# Show Washing Machine as On or standby depending on Power Usage
+#
+############################################################
+
+sensor:
+  - platform: template
+    sensors:
+      washing_machine:
+        value_template: >-
+          {%- if states("sensor.washingmachinepower_power") | float < 3.5 -%}
+            standby
+          {%- elif states("sensor.washingmachinepower_power") | float >= 3.5 -%}
+            running
+          {%- else -%}
+            unknown
+          {%- endif -%}
+
+automation:
+  - alias: TV and iOS message when Washine Machine is finished
+    trigger:
+      platform: state
+      entity_id: sensor.washing_machine
+      from: 'running'
+      to: 'standby'
+      for:
+        minutes: 3
+    action:
+      - service: notify.ios_aileens_iphone
+        data:
+          title: 'Washing Machine'
+          message: 'The washing machine has completed its cycle'
+      - service: notify.livingroomtv
+        data:
+          title: 'Alert'
+          message: 'The washing machine has completed its cycle'
+
+  - alias: Voice alert when Washine Machine is finished
+    trigger:
+      platform: state
+      entity_id: sensor.washing_machine
+      from: 'running'
+      to: 'standby'
+      for:
+        minutes: 3
+    condition:
+      condition: state
+      entity_id: input_boolean.voice_alerts
+      state: 'on'
+    action:
+      - service: tts.amazon_polly_say
+        data:
+          entity_id: media_player.living_room_audio
+          message: 'The washing machine has completed its cycle'
