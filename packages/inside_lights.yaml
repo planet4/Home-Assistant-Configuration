@@ -43,11 +43,44 @@ automation:
 
 ############################################################
 #
+# Home Assistant Bathrom Lights Motion Automation
+#
+############################################################
+
+  - alias: "Turn on Bathroom Light when Motion is Detected"
+    trigger:
+      platform: state
+      entity_id: sensor.bathhroom_motion_sensor
+      to: 'Motion'
+    condition:
+      - condition: state
+        entity_id: sensor.light_sensor
+        state: 'Night'
+    action:
+      - service: timer.start
+        entity_id: timer.bathroom_light
+      - service: light.turn_on
+        entity_id: light.bathroom_1
+#        data_template:
+#          brightness: "{{ states('sensor.time_brightness')|int }}"
+
+  - alias: "Turn off Bathroom Light at end of timer"
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.bathroom_light
+    action:
+      - service: light.turn_off
+        entity_id: light.bathroom_1
+
+############################################################
+#
 # Home Assistant Porch Lights Motion Automation
 #
 ############################################################
 
-  - alias: Porch Light ON when Motion is ACTIVE
+  - alias: "Turn on Porch Light when Motion is Detected"
     trigger:
       platform: state
       entity_id: sensor.porch_motion_sensor
@@ -80,7 +113,7 @@ automation:
 #
 ############################################################
 
-  - alias: Hall Light ON when Motion is ACTIVE
+  - alias: "Turn on Hall Light when Motion is Detected"
     trigger:
       platform: state
       entity_id: sensor.hall_motion_sensor
@@ -109,7 +142,7 @@ automation:
 #
 ############################################################
 
-  - alias: Upstairs Hall Light ON when Motion is ACTIVE
+  - alias: "Turn on Upstair Hall Light when Motion is Detected"
     trigger:
       - platform: state
         entity_id: sensor.upper_stairs_motion_sensor
