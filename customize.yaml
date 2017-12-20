@@ -256,12 +256,6 @@ sensor.broadband_usage_upload:
   icon: mdi:arrow-up-bold-circle
 sensor.broadband_usage_total:
   icon: mdi:chart-donut
-sensor.sunrise:
-  icon: mdi:weather-sunset-up
-sensor.sunset:
-  icon: mdi:weather-sunset
-sensor.daylight:
-  icon: mdi:clock
 sensor.house_minimum_temperature:
   friendly_name: Minimum
   icon: mdi:thermometer
@@ -271,15 +265,3 @@ sensor.house_mean_temperature:
 sensor.house_maximum_temperature:
   friendly_name: Maximum
   icon: mdi:thermometer
-sensor.living_room_nest_protect_battery_health:
-  icon: mdi:battery
-sensor.living_room_nest_protect_co_status:
-  icon: mdi:nest-protect
-sensor.living_room_nest_protect_smoke_status:
-  icon: mdi:nest-protect
-sensor.upstairs_nest_protect_battery_health:
-  icon: mdi:battery
-sensor.upstairs_nest_protect_co_status:
-  icon: mdi:nest-protect
-sensor.upstairs_nest_protect_smoke_status:
-  icon: mdi:nest-protect

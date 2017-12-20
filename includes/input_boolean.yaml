@@ -31,9 +31,3 @@ travel_alerts:
 voice_alerts:
   name: Voice Alerts
   initial: on
-
-sunrise:
-  name: Sunrise
-
-sunset:
-  name: Sunset

@@ -74,7 +74,7 @@
   state_topic: "lorawan/gateway/1/1"
   name: "Water Tank Status"
   qos: 0
-  value_template: 
+  value_template:
     '{% if value is equalto "0" %} OK {% elif value is equalto "1"%} LOW {% elif value is equalto "2" %} DISABLED {% else %}UNKNOWN{% endif %}'
 
 - platform: mqtt
@@ -94,23 +94,3 @@
   name: "Soil Temperature Battery"
   qos: 0
   unit_of_measurement: "V"
-
-- platform: mqtt
-  state_topic: "hass/storage/light/sunrise"
-  name: "Sunrise"
-  qos: 0
-
-- platform: mqtt
-  state_topic: "hass/storage/light/sunset"
-  name: "Sunset"
-  qos: 0
-
-- platform: mqtt
-  state_topic: "hass/storage/light/daylight"
-  name: "Daylight"
-  qos: 0
-
-- platform: mqtt
-  state_topic: "hass/storage/light/daylight_seconds"
-  name: "Daylight Seconds"
-  qos: 0
